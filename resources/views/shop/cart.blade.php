@@ -46,7 +46,9 @@
                             </div>
                         </td>
                         <td class="align-middle">$ {{ number_format($total) }}</td>
-                        <td class="align-middle"><button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button></td>
+                        <td class="align-middle"><button class="btn btn-sm btn-danger" ><a data-href="{{ route('remove.from.cart', $id) }}"
+                            class="btn btn-danger btn-sm fa fa-window-close"
+                            id="{{ $id }}">Xóa</a></button></td>
                     </tr>
                 </tbody>
                 @endforeach

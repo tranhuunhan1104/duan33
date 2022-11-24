@@ -72,7 +72,7 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
 // Route::get('/cart-store/{id}', [CartController::class, 'store'])->name('cart.store');
 // Route::patch('/update-cart', [CartController::class, 'update'])->name('update.cart');
-// Route::delete('/remove-from-cart/{id}', [CartController::class, 'remove'])->name('remove.from.cart');
+Route::delete('/remove-from-cart/{id}', [CartController::class, 'remove'])->name('remove.from.cart');
 
 // // customer==============
 // Route::get('/login-index', [CartController::class, 'indexlogin'])->name('login.index');
