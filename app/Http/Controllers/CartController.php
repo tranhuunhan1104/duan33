@@ -37,7 +37,7 @@ class CartController extends Controller
         $param =[
             'product'=> $product
           ];
-        return view('cart',$param );
+        return view('shop.cart' );
     }
 
     public function shop()
@@ -121,6 +121,7 @@ class CartController extends Controller
         session()->put('cart', $cart);
         $data = [];
         $data['cart'] = session()->has('cart');
+        // dd($data);
         return redirect()->route('cart.index');
     }
 

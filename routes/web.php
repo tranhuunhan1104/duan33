@@ -54,7 +54,7 @@ Route::get('/search-category', [CategoryController::class, 'search'])->name('cat
 Route::get('/search-product', [ProductController::class, 'search'])->name('product.search');
 });
 // user===================
-Route::get('/shop',[CartController::class,'shop'])->name('shop');
+// Route::get('/shop',[CartController::class,'shop'])->name('shop');
 //  admin=======================
 Route::get('/admin-index', [AminController::class, 'index'])->name('admin.index');
 
@@ -67,16 +67,23 @@ Route::get('/auth/redirect/{provider}', [SocialController::class, 'redirect']);
 Route::get('/callback/{provider}', [SocialController::class, 'callback']);
 
 // cart===================
+// Route::prefix('shop')->group(function () {
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+
+// Route::get('/cart-store/{id}', [CartController::class, 'store'])->name('cart.store');
+// Route::patch('/update-cart', [CartController::class, 'update'])->name('update.cart');
+// Route::delete('/remove-from-cart/{id}', [CartController::class, 'remove'])->name('remove.from.cart');
+
+// // customer==============
+// Route::get('/login-index', [CartController::class, 'indexlogin'])->name('login.index');
+// Route::post('/login', [CartController::class, 'checklogin'])->name('shop.checklogin');
+// });
+
+
+//shop
+
 Route::prefix('shop')->group(function () {
-Route::get('/cart-index', [CartController::class, 'index'])->name('cart.index');
-
-Route::get('/cart-store/{id}', [CartController::class, 'store'])->name('cart.store');
-Route::patch('/update-cart', [CartController::class, 'update'])->name('update.cart');
-Route::delete('/remove-from-cart/{id}', [CartController::class, 'remove'])->name('remove.from.cart');
-
-// customer==============
-Route::get('/login-index', [CartController::class, 'indexlogin'])->name('login.index');
-Route::post('/login', [CartController::class, 'checklogin'])->name('shop.checklogin');
+    Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
+    Route::get('/showProduct/{id}', [ShopController::class, 'show'])->name('shop.showProduct');
+    Route::get('/store/{id}', [CartController::class, 'store'])->name('shop.store');
 });
-
-
