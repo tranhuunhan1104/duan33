@@ -76,20 +76,30 @@ button:hover {
 
 </style>
 <!--Source frome https://www.w3schools.com/howto/howto_css_signup_form.asp-->
-<form action="" >
+<form class="text-left clearfix" method="POST" action="{{route('shop.checkregister')}}">
+    @csrf
     <div class="container">
       <h1>Form Đăng Ký</h1>
       <p>Xin hãy nhập biểu mẫu bên dưới để đăng ký.</p>
       <hr>
 
+      <label for="name"><b>Tên</b></label>
+      <input type="text" placeholder="Nhập Tên" name="name" required>
+
       <label for="email"><b>Email</b></label>
       <input type="text" placeholder="Nhập Email" name="email" required>
 
+      <label for="email"><b>Số điện thoại</b></label>
+      <input type="text" placeholder="Nhập Sdt" name="phone" required>
+
+      <label for="email"><b>Địa chỉ</b></label>
+      <input type="text" placeholder="Nhập Địa Chỉ" name="address" required>
+
       <label for="psw"><b>Mật Khẩu</b></label>
-      <input type="password" placeholder="Nhập Mật Khẩu" name="psw" required>
+      <input type="password" placeholder="Nhập Mật Khẩu" name="password" required>
 
       <label for="psw-repeat"><b>Nhập Lại Mật Khẩu</b></label>
-      <input type="password" placeholder="Nhập Lại Mật Khẩu" name="psw-repeat" required>
+      <input type="password" placeholder="Nhập Lại Mật Khẩu" name="confirmpassword" required>
 
       <label>
         <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Nhớ Đăng Nhập
@@ -100,3 +110,4 @@ button:hover {
       </div>
     </div>
   </form>
+  <p class="mt-20">Bạn đã có tài khoản ?<a href=""> Login</a></p>

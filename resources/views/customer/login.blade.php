@@ -192,11 +192,10 @@ section .noi-dung .form .icon-dang-nhap li{
                 <div class="input-form">
                     <input type="submit" value="Đăng Nhập">
                 </div>
-                <div class="input-form">
-                    <p>Bạn Chưa Có Tài Khoản? <a href="#">Đăng Ký</a></p>
-                </div>
             </form>
-
+            <div class="input-form">
+                <p>Bạn Chưa Có Tài Khoản? <a href="{{route('shop.register')}}">Đăng Ký</a></p>
+            </div>
         </div>
     </div>
     <!--Kết Thúc Phần Nội Dung-->

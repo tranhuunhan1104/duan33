@@ -7,6 +7,7 @@
                 <thead class="thead-dark">
                     <tr>
                         <th>Products</th>
+                        {{-- <th>Image</th> --}}
                         <th>Price</th>
                         <th>Quantity</th>
                         <th>Total</th>
@@ -28,7 +29,7 @@
                  @endphp
                     <tr>
                         <td class="align-middle">
-                            <img src="{{ asset('storage/images/' . $details['image']) }}" alt="" style="width: 50px;"><a href="#!">{{ $details['nameVi'] ?? '' }}</a></td>
+                            <img src="{{ asset('public/uploads/product/'.$details['image']) }}" alt="" style="width: 50px;"><a>{{ $details['nameVi'] ?? '' }}</a></td>
                         <td class="align-middle">$ {{ number_format($details['price']) }}</td>
                         <td class="align-middle">
                             <div class="input-group quantity mx-auto" style="width: 100px;">
@@ -46,9 +47,11 @@
                             </div>
                         </td>
                         <td class="align-middle">$ {{ number_format($total) }}</td>
-                        <td class="align-middle"><button class="btn btn-sm btn-danger" ><a data-href="{{ route('remove.from.cart', $id) }}"
-                            class="btn btn-danger btn-sm fa fa-window-close"
-                            id="{{ $id }}">Xóa</a></button></td>
+                        <td class="align-middle">
+                            <button class="btn btn-sm btn-danger" ><a data-href="{{ route('remove.from.cart', $id) }}"
+                                class="btn btn-danger btn-sm fa fa-window-close"
+                                id="{{ $id }}">Xóa</a></button>
+                        </td>
                     </tr>
                 </tbody>
                 @endforeach
@@ -80,12 +83,45 @@
                     <div class="d-flex justify-content-between mt-2">
                         <h5>Total</h5>
                         <h5>$ {{ $totalAll + 10  }}</h5>
-                    </div>
-                    <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Proceed To Checkout</button>
-                </div>
+                        @if (session('cart'))
+                        <a href="{{ route('checkOuts') }}" class="btn btn-main pull-right">Checkout</a>
+                    @endif
             </div>
         </div>
     </div>
 </div>
 @endsection
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $(document).on('click', '.fa-window-close', function(e) {
+            e.preventDefault();
+            let id = $(this).attr('id');
+            let href = $(this).data('href');
+            let csrf = '{{ csrf_token() }}';
+            window.location.reload();
+            $.ajax({
+                url: href,
+                method: 'delete',
+                data: {
+                    _token: csrf
+                },
+                success: function(response) {
+                    $('.item-' + id).remove();
+                    alertify.set('notifier', 'position', 'top-right');
+                    alertify.success(response.status);
+                }
+            });
+        });
+
+    $('.btn-plus, .btn-minus').on('click', function(e) {
+        const isNegative = $(e.target).closest('.btn-minus').is('.btn-minus');
+        const input = $(e.target).closest('.input-group').find('input');
+        if (input.is('input')) {
+            input[0][isNegative ? 'stepDown' : 'stepUp']()
+        }
+    })
+</script>
+
 

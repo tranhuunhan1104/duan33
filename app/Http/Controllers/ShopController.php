@@ -3,24 +3,126 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Customer;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ShopController extends Controller
 {
-    /**
+   /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public function checklogin(Request $request)
+    {
+        // dd(123);
+        $arr = [
+            'email' => $request->email,
+            'password' => $request->password
+        ];
+        if (Auth::guard('customers')->attempt($arr)) {
+            return redirect()->route('shop.index');
+        } else {
+            return redirect()->route('login.index');
+        }
+    }
+    public function register()
+    {
+        return view('customer.register');
+    }
+    public function checkregister(Request $request)
+    {
+        $validated = $request->validate([
+            'email' => 'required|unique:customers|email',
+            'password' => 'required|min:6',
+        ]);
+
+        $notifications = [
+            'ok' => 'ok',
+        ];
+        $notification = [
+            'message' => 'error',
+        ];
+        $customer = new Customer();
+        $customer->name = $request->name;
+        $customer->phone = $request->phone;
+        $customer->address =  $request->address;
+        $customer->email = $request->email;
+        $customer->password = bcrypt($request->password);
+
+        if ($request->password == $request->confirmpassword) {
+            $customer->save();
+            return redirect()->route('shop.index');
+        } else {
+            return redirect()->route('shop.index')->with($notification);
+        }
+    }
+    public function indexlogin()
+    {
+        return view('customer.login');
+    }
     public function index()
     {
-        $products = Product::limit(8)->get();
-        $param = [
-            'products' => $products
-        ];
-        return view('shop.shop', $param);
+        $product = Product::get();
+        $param =[
+            'product'=> $product
+          ];
+        return view('shop.shop',$param );
     }
+
+    public function shop()
+    {
+        $product = Product::get();
+      $param =[
+        'product'=> $product
+      ];
+      return view('shop', $param );
+        // return view('layout.shop' );
+    }
+
+    public function update(Request $request)
+    {
+        if ($request->id && $request->quantity) {
+            $cart = session()->get('cart');
+            $cart[$request->id]["quantity"] = $request->quantity;
+            $totalCart = number_format(($cart[$request->id]["price"]) * $cart[$request->id]["quantity"]);
+            $totalAllCart = 0;
+            $TotalAllRefreshAjax = 0;
+            foreach ($cart as $id => $details) {
+                $totalAllCart = $details['price'] * $details['quantity'];
+                $TotalAllRefreshAjax += $totalAllCart;
+            }
+            session()->put('cart', $cart);
+            session()->flash('message', 'Cart updated successfully');
+            return response()->json([
+                'status' => 'cập nhật thành công',
+                'totalCart' => '' . $totalCart,
+                'TotalAllRefreshAjax' => '' . number_format($TotalAllRefreshAjax),
+            ]);
+        }
+    }
+
+
+    public function remove(Request $request)
+    {
+        if ($request->id) {
+            $cart = session()->get('cart');
+            if (isset($cart[$request->id])) {
+                unset($cart[$request->id]);
+                session()->put('cart', $cart);
+            }
+            session()->put('cart', $cart);
+            return response()->json(['status' => 'Xóa đơn hàng thành công']);
+        }
+    }
+    public function checkOuts()
+    {
+        return view('shop.checkout');
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -40,15 +142,9 @@ class ShopController extends Controller
      */
     public function store($id)
     {
-        $notification = [
-            'message' => 'Thêm Thành Công!',
-            'alert-type' => 'success'
-        ];
-
         $product = Product::findOrFail($id);
         $cart = session()->get('cart', []);
         if (isset($cart[$id])) {
-            // dd($cart);
             $cart[$id]['quantity']++;
         } else {
             $cart[$id] = [
@@ -59,13 +155,22 @@ class ShopController extends Controller
                 'max' => $product->quantity,
             ];
         }
-
         session()->put('cart', $cart);
         $data = [];
         $data['cart'] = session()->has('cart');
-        return redirect()->route('')->with( $notification);
+        // dd($data);
+        return redirect()->route('cart.index');
     }
-
+    public function show($id)
+{
+    $product = Product::find($id);
+    $categorys = Category::get();
+    $param = [
+        'product' => $product,
+        'categorys' => $categorys
+    ];
+    return view('shop.showproduct',$param);
+}
 
     /**
      * Display the specified resource.
@@ -73,15 +178,15 @@ class ShopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function Cart()
     {
-        $product = Product::find($id);
-        $categorys = Category::get();
+        $products = Product::get();
+        $categories = Category::all();
         $param = [
-            'product' => $product,
-            'categorys' => $categorys
+            'products' => $products,
+            'categories' => $categories,
         ];
-        return view('shop.showproduct',$param);
+        return view('shop.cart', $param);
     }
 
     /**
@@ -95,17 +200,19 @@ class ShopController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function logout(Request $request)
     {
-        //
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('shop.index');
     }
+
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -117,4 +224,56 @@ class ShopController extends Controller
     {
         //
     }
+    public function order(Request $request)
+    {
+        if ($request->product_id == null) {
+            return redirect()->back();
+        } else {
+            $id = Auth::guard('customers')->user()->id;
+            $data = Customer::find($id);
+            $data->address = $request->address;
+            $data->email = $request->email;
+            $data->phone = $request->phone;
+            $data->address = $request->address;
+
+            if (isset($request->note)) {
+                $data->note = $request->note;
+            }
+            $data->save();
+
+            $order = new Order();
+            $order->customer_id = Auth::guard('customers')->user()->id;
+            $order->date_at = date('Y-m-d H:i:s');
+            $order->total = $request->totalAll;
+            $order->save();
+        }
+                $count_product = count($request->product_id);
+                for ($i = 0; $i < $count_product; $i++) {
+                    $orderItem = new OrderDetail();
+                    $orderItem->order_id =  $order->id;
+                    $orderItem->product_id = $request->product_id[$i];
+                    $orderItem->quantity = $request->quantity[$i];
+                    $orderItem->total = $request->total[$i];
+                    $orderItem->save();
+                    session()->forget('cart');
+                    DB::table('products')
+                        ->where('id', '=', $orderItem->product_id)
+                        ->decrement('amount', $orderItem->quantity);
+                }
+                $notification = [
+                    'message' => 'success',
+                ];
+
+        // dd($request);
+        // alert()->success('Thêm Đơn Đặt: '.$request->name,'Thành Công');
+        return redirect()->route('shop.index')->with($notification);;
+        // }
+        // } catch (\Exception $e) {
+        //     // dd($request);
+        //     Log::error($e->getMessage());
+        //     // toast('Đặt hàng thấy bại!', 'error', 'top-right');
+        //     return redirect()->route('shop.index');
+        // }
+    }
 }
+

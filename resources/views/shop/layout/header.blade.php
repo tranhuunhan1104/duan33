@@ -1,3 +1,95 @@
+<div class="container-fluid">
+    <div class="row bg-secondary py-1 px-xl-5">
+        <div class="col-lg-6 d-none d-lg-block">
+            <div class="d-inline-flex align-items-center h-100">
+                <a class="text-body mr-3" href="">About</a>
+                <a class="text-body mr-3" href="">Contact</a>
+                <a class="text-body mr-3" href="">Help</a>
+                <a class="text-body mr-3" href="">FAQs</a>
+            </div>
+        </div>
+        <div class="col-lg-6 text-center text-lg-right">
+            <div class="d-inline-flex align-items-center">
+
+                <div class="flex-col hide-for-medium flex-right">
+                            <ul class="header-nav header-nav-main nav nav-right  nav-uppercase">
+                                    <div class="header-button">
+
+                                        @if (isset(Auth()->guard('customers')->user()->name))
+                                        {{ Auth()->guard('customers')->user()->name }}
+                                        <form method="POST" action="{{ route('shoplogout') }}">
+                                                @csrf
+                                        <a href="#"onclick="event.preventDefault();
+                                                this.closest('form').submit();"
+                                            class="header-cart-link icon button circle is-outline is-small">Đăng xuất</a>
+                                        </form>
+                            @else
+                                <a href="{{ route('login.index') }}" title="Đăng nhập"
+                                    class="header-cart-link icon button circle is-outline is-small">
+                                    Đăng nhập
+                                </a>
+                            @endif
+
+                        </div>
+
+                        </li>
+                        <li class="header-divider"></li>
+                       
+                    </div>
+                <div class="btn-group mx-2">
+                    <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">USD</button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <button class="dropdown-item" type="button">EUR</button>
+                        <button class="dropdown-item" type="button">GBP</button>
+                        <button class="dropdown-item" type="button">CAD</button>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">EN</button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <button class="dropdown-item" type="button">FR</button>
+                        <button class="dropdown-item" type="button">AR</button>
+                        <button class="dropdown-item" type="button">RU</button>
+                    </div>
+                </div>
+            </div>
+            <div class="d-inline-flex align-items-center d-block d-lg-none">
+                <a href="" class="btn px-0 ml-2">
+                    <i class="fas fa-heart text-dark"></i>
+                    <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
+                </a>
+                <a href="" class="btn px-0 ml-2">
+                    <i class="fas fa-shopping-cart text-dark"></i>
+                    <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
+        <div class="col-lg-4">
+            <a href="" class="text-decoration-none">
+                <span class="h1 text-uppercase text-primary bg-dark px-2">Multi</span>
+                <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Shop</span>
+            </a>
+        </div>
+        <div class="col-lg-4 col-6 text-left">
+            <form action="">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for products">
+                    <div class="input-group-append">
+                        <span class="input-group-text bg-transparent text-primary">
+                            <i class="fa fa-search"></i>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-4 col-6 text-right">
+            <p class="m-0">Customer Service</p>
+            <h5 class="m-0">+012 345 6789</h5>
+        </div>
+    </div>
+</div>
 <div class="container-fluid bg-dark mb-30">
     <div class="row px-xl-5">
         <div class="col-lg-3 d-none d-lg-block">
@@ -79,7 +171,7 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item position-relative active" style="height: 430px;">
-                        <img class="position-absolute w-100 h-100" src="img/carousel-1.jpg" style="object-fit: cover;">
+                        <img class="position-absolute w-100 h-100" src="{{ asset('shop/img/carousel-1.jpg') }}" style="object-fit: cover;">
                         <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                             <div class="p-3" style="max-width: 700px;">
                                 <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Men Fashion</h1>
@@ -89,7 +181,7 @@
                         </div>
                     </div>
                     <div class="carousel-item position-relative" style="height: 430px;">
-                        <img class="position-absolute w-100 h-100" src="img/carousel-2.jpg" style="object-fit: cover;">
+                        <img class="position-absolute w-100 h-100" src="{{ asset('shop/img/carousel-2.jpg') }}" style="object-fit: cover;">
                         <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                             <div class="p-3" style="max-width: 700px;">
                                 <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Women Fashion</h1>
@@ -99,7 +191,7 @@
                         </div>
                     </div>
                     <div class="carousel-item position-relative" style="height: 430px;">
-                        <img class="position-absolute w-100 h-100" src="img/carousel-3.jpg" style="object-fit: cover;">
+                        <img class="position-absolute w-100 h-100" src="{{ asset('shop/img/carousel-3.jpg') }}" style="object-fit: cover;">
                         <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                             <div class="p-3" style="max-width: 700px;">
                                 <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Kids Fashion</h1>
@@ -113,7 +205,7 @@
         </div>
         <div class="col-lg-4">
             <div class="product-offer mb-30" style="height: 200px;">
-                <img class="img-fluid" src="img/offer-1.jpg" alt="">
+                <img class="img-fluid" src="{{ asset('shop/img/offer-1.jpg')}}" alt="">
                 <div class="offer-text">
                     <h6 class="text-white text-uppercase">Save 20%</h6>
                     <h3 class="text-white mb-3">Special Offer</h3>
@@ -121,7 +213,7 @@
                 </div>
             </div>
             <div class="product-offer mb-30" style="height: 200px;">
-                <img class="img-fluid" src="img/offer-2.jpg" alt="">
+                <img class="img-fluid" src="{{ asset('shop/img/offer-2.jpg')}}" alt="">
                 <div class="offer-text">
                     <h6 class="text-white text-uppercase">Save 20%</h6>
                     <h3 class="text-white mb-3">Special Offer</h3>

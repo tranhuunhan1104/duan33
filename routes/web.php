@@ -68,14 +68,11 @@ Route::get('/callback/{provider}', [SocialController::class, 'callback']);
 
 // cart===================
 // Route::prefix('shop')->group(function () {
-Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
 // Route::get('/cart-store/{id}', [CartController::class, 'store'])->name('cart.store');
 // Route::patch('/update-cart', [CartController::class, 'update'])->name('update.cart');
-Route::delete('/remove-from-cart/{id}', [CartController::class, 'remove'])->name('remove.from.cart');
 
 // // customer==============
-// Route::get('/login-index', [CartController::class, 'indexlogin'])->name('login.index');
 // Route::post('/login', [CartController::class, 'checklogin'])->name('shop.checklogin');
 // });
 
@@ -85,5 +82,16 @@ Route::delete('/remove-from-cart/{id}', [CartController::class, 'remove'])->name
 Route::prefix('shop')->group(function () {
     Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
     Route::get('/showProduct/{id}', [ShopController::class, 'show'])->name('shop.showProduct');
-    Route::get('/store/{id}', [CartController::class, 'store'])->name('shop.store');
+    Route::get('/store/{id}', [ShopController::class, 'store'])->name('shop.store');
+    Route::get('/cart', [ShopController::class, 'Cart'])->name('cart.index');
+    Route::delete('/remove-from-cart/{id}', [ShopController::class, 'remove'])->name('remove.from.cart');
+    Route::get('/checkOuts', [ShopController::class, 'checkOuts'])->name('checkOuts');
+    Route::post('/login', [ShopController::class, 'checklogin'])->name('shop.checklogin');
+    Route::get('/register', [ShopController::class, 'register'])->name('shop.register');
+    Route::get('/login-index', [ShopController::class, 'indexlogin'])->name('login.index');
+    Route::post('/checkregister', [ShopController::class, 'checkregister'])->name('shop.checkregister');
+    Route::post('/shoplogout', [ShopController::class, 'logout'])->name('shoplogout');
+    Route::post('/order', [ShopController::class, 'order'])->name('order');
+
+
 });
