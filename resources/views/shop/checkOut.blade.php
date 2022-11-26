@@ -52,8 +52,7 @@
                         @foreach (session('cart') as $id => $details)
                             @php
                                 $total = $details['price'] * $details['quantity'];
-                                $totalall = 10+$total;
-                                $totalAll += $totalall
+                                $totalAll += $total
 
                             @endphp
                             <div>
@@ -63,6 +62,8 @@
                                 name="product_id[]">{{ $details['nameVi'] ?? '' }} x
                                 <input type="hidden" value="{{ $details['quantity'] }}"
                                 name="quantity[]">{{ $details['quantity'] ?? '' }}</p>
+                                <input type="hidden" value="{{ $total }}"
+                                    name="total[]"></td>
 
                         </div>
                     </div>
@@ -80,33 +81,31 @@
                     <div class="pt-2">
                         <div class="d-flex justify-content-between mt-2">
                             <h5>Total</h5>
-                            <h5>{{ $totalall }}</h5>
+                            <h5>{{ $total }}</h5>
                         </div>
                     </div>
 
-                    <div class="pt-2">
-                        <div class="d-flex justify-content-between mt-2">
-                            <h5>TotalAll</h5>
-                            <h5>{{ $totalAll }}</h5>
-                        </div>
-                    </div>
+
                 </div>
                 <div class="discount-code">
                     @endforeach
                 @endif
+                <div class="pt-2">
+                    <div class="d-flex justify-content-between mt-2">
+                        <h5>TotalAll</h5>
+                        <h5>{{ $totalAll }}</h5>
+                    </div>
+                </div>
                     </div>
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-block btn-primary font-weight-bold py-3">Place Order</button>
+            <button type="submit" class="btn btn-block btn-primary font-weight-bold py-3">Đặt hàng</button>
 
         </form>
 
             </div>
 
-        </div>
-
-        </div>
         </div>
         </div>
 

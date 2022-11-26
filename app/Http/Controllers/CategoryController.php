@@ -42,15 +42,9 @@ class CategoryController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required',
-            'description' => 'required',
-            'slug' => 'required',
-            'status' => 'required',
         ],
             [
                 'name.required'=>'Không được để trống',
-                'description.required'=>'Không được để trống',
-                'slug.required'=>'Không được để trống',
-                'status.required'=>'Không được để trống',
             ]
             // $.ajax(option)
             // alertify.success('Cập nhật thành công');
@@ -58,9 +52,6 @@ class CategoryController extends Controller
     );
         $category = new Category();
         $category->name = $request->name;
-        $category->description = $request->description;
-        $category->slug = $request->slug;
-        $category->status = $request->status;
         $category->save($request->all());
         // return redirect('home');
         return redirect()->route('category.index');

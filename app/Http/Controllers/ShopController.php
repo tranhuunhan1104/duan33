@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Customer;
 use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ShopController extends Controller
 {
@@ -258,7 +260,7 @@ class ShopController extends Controller
                     session()->forget('cart');
                     DB::table('products')
                         ->where('id', '=', $orderItem->product_id)
-                        ->decrement('amount', $orderItem->quantity);
+                        ->decrement('quantity', $orderItem->quantity);
                 }
                 $notification = [
                     'message' => 'success',

@@ -20,8 +20,6 @@
                  <div style="color: red">{{$message}}</div>
                 @enderror
                  </div>
-
-               
              </form>
              <div class="col-12">
                 <button class="btn btn-primary px-4">Submit Item</button>
