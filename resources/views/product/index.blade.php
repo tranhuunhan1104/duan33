@@ -60,7 +60,7 @@
             </td>
             <td>{{$team->status}}</td>
             {{-- <td>{{$team->category_id }}</td> --}}
-            <td>{{$team->category->name}}</td>
+            <td>{{ $team->name }}</td>
           <td>
                 <form action="{{route('product_destroy',$team->id)}}" method="post">
                     @method('DELETE')

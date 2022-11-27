@@ -33,7 +33,7 @@ class ShopController extends Controller
     }
     public function register()
     {
-        return view('customer.register');
+        return view('loginlogout.register');
     }
     public function checkregister(Request $request)
     {
@@ -64,7 +64,7 @@ class ShopController extends Controller
     }
     public function indexlogin()
     {
-        return view('customer.login');
+        return view('loginlogout.login');
     }
     public function index()
     {

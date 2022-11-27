@@ -45,20 +45,23 @@
                     <th scope="row">{{$key+1}}</th>
                     <td>{{$team->name}}</td>
 
+                    <form action="{{ route('category.softdeletes', $team->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
                     <td>
-                        <form action="{{route('category_destroy',$team->id)}}" method="post">
-                            @method('DELETE')
-                            @csrf
-                            <button onclick="return confirm('Bạn chắc chắn muốn xóa danh mục này không?');" class="btn btn-danger">Xóa</button>
-                            </form>
+
+                            <button type="submit" class="w3-button w3-red"
+                            onclick="return confirm('Chuyên vào thùng rác')">Xóa</button>
+
                         <a href="{{route('category_edit',[$team->id])}}" class="btn btn-primary">Sửa</a>
                     </td>
+                    </form>
                   </tr>
         @endforeach
 
             </tbody>
-            <tr>{{ $categories->appends(request()->query()) }}</tr>
-          </table>
+        </table>
+        <tr>{{ $categories->appends(request()->query()) }}</tr>
         </div>
       </div>
     </div>

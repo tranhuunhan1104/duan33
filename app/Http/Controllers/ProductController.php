@@ -15,9 +15,14 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('category')->paginate(3);
 
+        $products = Product::with('category')->paginate(3);
+        // dd($products);
         return view('product.index',compact(['products']));
+        // $products= Product::with('category')->orderBy('id','DESC')->get();
+
+        // return view('product.index')->with(compact('products'));
+
     }
 
     /**

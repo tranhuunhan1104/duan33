@@ -32,9 +32,15 @@
           </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{route('admin.index')}}">
+        <a class="nav-link" href="{{ route('order.index') }}">
             <i class="typcn typcn-film menu-icon"></i>
-            <span class="menu-title">Admin</span>
+            <span class="menu-title">Order</span>
+          </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('category.trash') }}">
+            <i class="typcn typcn-film menu-icon"></i>
+            <span class="menu-title">Trash</span>
           </a>
       </li>
 

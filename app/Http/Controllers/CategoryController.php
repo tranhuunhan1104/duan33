@@ -110,10 +110,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        Category::find($id)->delete();
-        // return redirect('home');
-        return redirect()->route('category.index');
-
+        $category=Category::onlyTrashed()->findOrFail($id);
+        $category->forceDelete();
+        
     }
     public function search(Request $request)
     {
@@ -124,4 +123,24 @@ class CategoryController extends Controller
     $categories = Category::where('name', 'LIKE', '%' . $search . '%')->paginate(5);
     return view('category.index', compact('categories'));
     }
+    public  function softdeletes($id){
+        date_default_timezone_set("Asia/Ho_Chi_Minh");
+        $category = Category::findOrFail($id);
+        $category->deleted_at = date("Y-m-d h:i:s");
+        $category->save();
+        return redirect()->route('category.index');
+    }
+    public  function trash(){
+        $categories = Category::onlyTrashed()->get();
+        $param = ['categories'    => $categories];
+        return view('category.trash', $param);
+    }
+    public function restoredelete($id){
+        $categories=Category::withTrashed()->where('id', $id);
+        $categories->restore();
+        return redirect()->route('category.trash');
+
+
+    }
+
 }

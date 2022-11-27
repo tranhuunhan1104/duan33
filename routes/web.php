@@ -1,11 +1,13 @@
 <?php
 
+use App\Exports\OrderExport;
 use App\Http\Controllers\AminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LogincustomerController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\SocialController;
@@ -35,12 +37,16 @@ Route::middleware(['auth'])->group(function(){
 Route::get('/home', [HomeController::class,'index'])->name('home');
 Route::get('/help', [HomeController::class,'help'])->name('help');
 // category=====================
-Route::delete('/categories/{id}', [CategoryController::class,'destroy'])->name('category_destroy');
+// Route::delete('/categories/{id}', [CategoryController::class,'destroy'])->name('category_destroy');
 Route::get('/user/{id}', [CategoryController::class, 'edit'])->name('category_edit');
 Route::put('/user/{id}', [CategoryController::class, 'update'])->name('category.update');
 Route::get('/create', [CategoryController::class, 'create'])->name('category.create');
 Route::post('/store', [CategoryController::class, 'store'])->name('category.store');
 Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
+Route::put('/softdeletes/{id}', [CategoryController::class, 'softdeletes'])->name('category.softdeletes');
+Route::get('/trash', [CategoryController::class, 'trash'])->name('category.trash');
+Route::put('/restoredelete/{id}', [CategoryController::class, 'restoredelete'])->name('category.restoredelete');
+Route::delete('/destroy/{id}', [CategoryController::class, 'destroy'])->name('category_destroy');
 // products================
 Route::get('/product-index', [ProductController::class, 'index'])->name('product.index');
 Route::get('/product-create', [ProductController::class, 'create'])->name('product.create');
@@ -92,6 +98,10 @@ Route::prefix('shop')->group(function () {
     Route::post('/checkregister', [ShopController::class, 'checkregister'])->name('shop.checkregister');
     Route::post('/shoplogout', [ShopController::class, 'logout'])->name('shoplogout');
     Route::post('/order', [ShopController::class, 'order'])->name('order');
-
-
 });
+
+Route::prefix('order')->group(function () {
+    Route::get('/', [OrderController::class, 'index'])->name('order.index');
+    Route::get('/detail/{id}', [OrderController::class, 'detail'])->name('order.detail');
+});
+Route::get('/xuat', [OrderExport::class, 'exportOrder'])->name('xuat');

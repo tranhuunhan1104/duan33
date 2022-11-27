@@ -63,7 +63,7 @@
                                 <input type="hidden" value="{{ $details['quantity'] }}"
                                 name="quantity[]">{{ $details['quantity'] ?? '' }}</p>
                                 <input type="hidden" value="{{ $total }}"
-                                    name="total[]"></td>
+                                    name="total[]">{{ number_format($total) }}.vnd</td>
 
                         </div>
                     </div>
@@ -81,7 +81,7 @@
                     <div class="pt-2">
                         <div class="d-flex justify-content-between mt-2">
                             <h5>Total</h5>
-                            <h5>{{ $total }}</h5>
+                            <h5>{{ $totalAll }}</h5>
                         </div>
                     </div>
 

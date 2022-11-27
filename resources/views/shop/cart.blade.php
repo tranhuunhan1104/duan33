@@ -82,7 +82,7 @@
                 <div class="pt-2">
                     <div class="d-flex justify-content-between mt-2">
                         <h5>Total</h5>
-                        <h5>$ {{ $totalAll + 10  }}</h5>
+                        <h5> {{ $totalAll + 10  }}</h5>
                         @if (session('cart'))
                         <a href="{{ route('checkOuts') }}" class="btn btn-main pull-right">Checkout</a>
                     @endif
