@@ -1,7 +1,11 @@
 
 @extends('layout.master')
 @section('content')
-
+@if (session('status'))
+<div class="alert alert-success" role="alert">
+   {{ session('status') }}
+</div>
+@endif
 
 <div class="col-lg-12 grid-margin stretch-card">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -60,7 +64,7 @@
             </td>
             <td>{{$team->status}}</td>
             {{-- <td>{{$team->category_id }}</td> --}}
-            <td>{{ $team->name }}</td>
+            <td>{{ $team->category->name }}</td>
           <td>
                 <form action="{{route('product_destroy',$team->id)}}" method="post">
                     @method('DELETE')

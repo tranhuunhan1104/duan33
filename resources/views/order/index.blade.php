@@ -2,10 +2,9 @@
 @section('content')
 <h1>Đơn hàng</h1>
 <hr>
-<a   class="btn btn-warning" href="{{route('xuat')}}">Xuất</a>
-
+<td> <a class="btn btn-warning" href="{{route('xuat')}}">Xuất</a> </td>
 <table class="table table-bordered">
-  <thead>
+    <thead>
     <tr>
       <th scope="col">STT</th>
       <th scope="col">Tên Khách Hàng</th>
@@ -13,7 +12,7 @@
       <th scope="col">Số Điện Thoại</th>
       <th scope="col">Địa Chỉ</th>
       <th scope="col">Ngày Đặt Hàng</th>
-      <th scope="col">Tổng Tiền(Đồng)</th>
+
       <th scope="col">Tùy Chọn</th>
     </tr>
   </thead>
@@ -26,7 +25,7 @@
       <td>{{$item->customer->phone}}</td>
       <td>{{$item->customer->address}}</td>
       <td>{{$item->date_at}}</td>
-      <td>{{number_format($item->total)}}</td>
+
       <td>
           <a  class='w3-button w3-blue' href="{{route('order.detail',$item->id)}}">Chi tiết</a>
       </td>

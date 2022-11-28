@@ -11,7 +11,7 @@
             <th scope="col">Tên Sản Phẩm</th>
             <th scope="col">GIá(Đồng)</th>
             <th scope="col">Số Lượng</th>
-            <th scope="col">Tổng Tiền(Đồng)</th>
+            <th scope="col">Tổng Tiền($)</th>
         </tr>
     </thead>
     <tbody>
@@ -28,5 +28,5 @@
         @endforeach
     </tbody>
 </table>
-Tổng Tiền của đơn hàng: {{number_format($total)}} vnd
+Tổng Tiền của đơn hàng: {{number_format($total)}} $
 @endsection

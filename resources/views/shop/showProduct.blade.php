@@ -50,7 +50,7 @@
                             </button>
                         </div>
                     </div>
-                    <a href="{{route('shop.store',$product->id)}}" id="{{ $product->id }}" class="btn btn-main mt-20">Add To Cart</a>
+                    <a href="{{route('shop.store',$product->id)}}" id="{{ $product->id }}" class="btn btn-danger mt-20">Add To Cart</a>
                 </div>
                 <div class="d-flex pt-2">
                     <strong class="text-dark mr-2">Share on:</strong>

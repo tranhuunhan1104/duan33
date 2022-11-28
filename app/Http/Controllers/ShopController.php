@@ -10,6 +10,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class ShopController extends Controller
 {
@@ -265,6 +266,14 @@ class ShopController extends Controller
                 $notification = [
                     'message' => 'success',
                 ];
+                $data = [
+                    'name' => $request->name,
+                    'pass' => $request->password,
+                ];
+                Mail::send('mail.mail', compact('data'), function ($email) use($request) {
+                    $email->subject('Shein Shop');
+                    $email->to($request->email, $request->name);
+                });
 
         // dd($request);
         // alert()->success('Thêm Đơn Đặt: '.$request->name,'Thành Công');

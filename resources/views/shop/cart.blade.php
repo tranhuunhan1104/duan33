@@ -72,7 +72,8 @@
                 <div class="border-bottom pb-2">
                     <div class="d-flex justify-content-between mb-3">
                         <h6>Subtotal</h6>
-                        <h6>$ {{ $totalAll}}</h6>
+                        {{-- <h6>$ {{ $totalAll}}</h6> --}}
+                        <h6>$ {{ number_format($totalAll) }}</h6>
                     </div>
                     <div class="d-flex justify-content-between">
                         <h6 class="font-weight-medium">Shipping</h6>
@@ -82,9 +83,9 @@
                 <div class="pt-2">
                     <div class="d-flex justify-content-between mt-2">
                         <h5>Total</h5>
-                        <h5> {{ $totalAll + 10  }}</h5>
+                        <h5> $ {{ number_format($totalAll + 10)  }}</h5>
                         @if (session('cart'))
-                        <a href="{{ route('checkOuts') }}" class="btn btn-main pull-right">Checkout</a>
+                        <a href="{{ route('checkOuts') }}" class="btn btn-danger pull-right">Checkout</a>
                     @endif
             </div>
         </div>

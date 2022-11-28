@@ -1,8 +1,13 @@
 @extends('layout.master')
 @section('content')
-
     <div class="card">
       <div class="card-body">
+        @if (session('status'))
+        <div class="alert alert-success" role="alert">
+           {{ session('status') }}
+        </div>
+        @endif
+
         <h4 class="card-title">
             Display board</h4>
         <p class="card-description">

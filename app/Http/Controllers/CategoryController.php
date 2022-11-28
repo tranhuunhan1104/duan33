@@ -53,8 +53,9 @@ class CategoryController extends Controller
         $category = new Category();
         $category->name = $request->name;
         $category->save($request->all());
+        // alert()->success('Thêm sản phẩm','thành công');
         // return redirect('home');
-        return redirect()->route('category.index');
+        return redirect()->route('category.index')->with('status','Thêm danh mục thành công');
 
 
     }
@@ -93,13 +94,10 @@ class CategoryController extends Controller
     {
     $categories = Category::find($id);
     $categories->name = $request->name;
-    $categories->description = $request->description;
-    $categories->status = $request->status;
-    $categories->slug = $request->slug;
     $categories->save();
-
+    alert()->success('Sửa sản phẩm','thành công');
     // return redirect('home');
-    return redirect()->route('category.index');
+    return redirect()->route('category.index')->with('status','Sửa danh mục thành công');
 }
 
     /**
@@ -111,8 +109,8 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category=Category::onlyTrashed()->findOrFail($id);
-        $category->forceDelete();
-        
+        $category->forceDelete()->with('status','Xóa danh mục thành công');
+
     }
     public function search(Request $request)
     {

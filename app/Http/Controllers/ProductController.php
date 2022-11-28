@@ -80,7 +80,7 @@ class ProductController extends Controller
         // dd($product);
         $product->save();
         // alert()->success('Thêm sản phẩm','thành công');
-        return redirect()->route('product.index');
+        return redirect()->route('product.index')->with('status','Thêm sản phẩm thành công');
     }
 
     /**
@@ -146,7 +146,7 @@ class ProductController extends Controller
         }
         $product->save();
 
-        return redirect()->route('product.index');
+        return redirect()->route('product.index')->with('status','Sửa sản phẩm thành công');
     }
 
     /**
@@ -159,7 +159,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $product->delete();
-        return redirect()->route('product.index');
+        return redirect()->route('product.index')->with('status','Xóa sản phẩm thành công');;
 
     }
     public function search(Request $request)
