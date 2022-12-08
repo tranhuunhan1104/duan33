@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Order;
+use App\Models\Customer;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class OrderPolicy
+class CustomerPolicy
 {
     use HandlesAuthorization;
 
@@ -18,7 +18,7 @@ class OrderPolicy
      */
     public function viewAny(User $user)
     {
-       return $user->hasPermission('Order_viewAny');
+       return $user->hasPermission('Customer_viewAny');
        //
     }
 
@@ -26,12 +26,12 @@ class OrderPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function view(User $user)
     {
-       return $user->hasPermission('Order_view');
+       return $user->hasPermission('Customer_view');
        //
     }
 
@@ -43,54 +43,59 @@ class OrderPolicy
      */
     public function create(User $user)
     {
-        //
+       return $user->hasPermission('Customer_create');
+       //
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function update(User $user)
     {
-        //
+       return $user->hasPermission('Customer_update');
+       //
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function delete(User $user)
     {
-        //
+       return $user->hasPermission('Customer_delete');
+       //
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function restore(User $user)
     {
-        //
+       return $user->hasPermission('Customer_restore');
+       //
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function forceDelete(User $user)
     {
-        //
+       return $user->hasPermission('Customer_forceDelete');
+       //
     }
 }

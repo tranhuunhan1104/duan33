@@ -32,7 +32,9 @@
         <p class="card-description">
           Add class <code>.table-products</code>
         </p>
+        @if(Auth::user()->hasPermission('Product_create'))
           <a class="btn btn-warning" href="{{route('product.create')}}">Thêm</a>
+          @endif
 
         <div class="table-responsive pt-3">
           <table class="table table-info" border="1">

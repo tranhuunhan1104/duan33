@@ -26,8 +26,9 @@
                 </div>
             </div>
         </form>
+        @if(Auth::user()->hasPermission('Category_create'))
           <a class="btn btn-warning" href="{{route('category.create')}}">Thêm</a>
-
+        @endif
         <div class="table-responsive pt-3">
           <table class="table table-info">
             <thead>

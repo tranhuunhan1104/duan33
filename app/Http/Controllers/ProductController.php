@@ -15,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-
+        $this->authorize('viewAny', Product::class);
         $products = Product::with('category')->paginate(3);
         // dd($products);
         return view('product.index',compact(['products']));
@@ -32,6 +32,7 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Product::class);
         $category = Category::all();
         return view('product.add', compact(['category']));
     }
@@ -91,6 +92,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
+        $this->authorize('view', Product::class);
         $productshow = Product::findOrFail($id);
         $param =[
             'productshow'=>$productshow,
@@ -108,6 +110,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+        $this->authorize('update', Product::class);
         $product = Product::find($id);
         $categories = Category::get();
         return view('product.edit', compact(['product','categories']));
@@ -157,6 +160,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
+        $this->authorize('viewtrash', Product::class);
         $product = Product::find($id);
         $product->delete();
         return redirect()->route('product.index')->with('status','Xóa sản phẩm thành công');;
