@@ -14,7 +14,7 @@
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">
-            Display board</h4>
+            Sản Phẩm</h4>
             <form class="navbar-form navbar-left"  action="{{ route('product.search') }}" method="GET">
                 @csrf
                 <div class="row">
@@ -29,9 +29,7 @@
                 </div>
             </form>
 
-        <p class="card-description">
-          Add class <code>.table-products</code>
-        </p>
+
         @if(Auth::user()->hasPermission('Product_create'))
           <a class="btn btn-warning" href="{{route('product.create')}}">Thêm</a>
           @endif
@@ -41,14 +39,14 @@
             <thead>
       <tr>
         <td scope="col">#</td>
-        <td scope="col">Product_name</td>
-        <td scope="col">Price ($)</td>
-        <td scope="col">Description</td>
-        <td scope="col">Quantity</td>
-        <td scope="col">Image</td>
-        <td scope="col">Status</td>
-        <td scope="col">Category </td>
-        <td scope="col">Action </td>
+        <td scope="col">Tên sản phẩm</td>
+        <td scope="col">Giá (vnd)</td>
+        <td scope="col">Mô tả</td>
+        <td scope="col">Số lượng</td>
+        <td scope="col">Ảnh</td>
+        <td scope="col">Trạng thái</td>
+        <td scope="col">Thể loại </td>
+        <td scope="col">Tùy chọn </td>
 
       </tr>
     </thead>

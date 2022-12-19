@@ -76,10 +76,7 @@ class UserController extends Controller
             'name' => $request->name,
             'pass' => $request->password,
         ];
-        // Mail::send('admin.mail.mail', compact('data'), function ($email) use($request) {
-        //     $email->subject('NowSaiGon');
-        //     $email->to($request->email, $request->name);
-        // });
+
 
         $notification = [
             'message' => 'Đăng ký thành công!',
@@ -223,15 +220,16 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        // $this->authorize('forceDelete', Product::class);
+      $this->authorize('forceDelete', Product::class);
         $notification = [
             'sainhap' => '!',
         ];
 
         $user = User::find($id);
-        if ($user->group->name!='Supper Admin') {
+        if($user->group->name!='Supper Admin'){
             $user->delete();
-        } else {
+        }
+        else{
             return dd(__METHOD__);
         }
     }

@@ -16,11 +16,11 @@
                         <a class="btn btn-outline-dark btn-square" href="{{ route('shop.showProduct' , $product->id) }}"><i class="fa fa-search"></i></a>
                     </div>
                 </div>
-                <div class="text-center py-4">
-                    <p>{{ $product->category->name }}</p>
-                    <a class="h6 text-decoration-none text-truncate" href="">{{ $product->name }}</a>
+                <div class="text-center py-4" style="font-family: Arial">
+                    <p>Thể loại : {{ $product->category->name }}</p>
+                    <a class="font-family" href="{{ route('shop.showProduct' , $product->id) }}" > {{ $product->name }}</a>
                     <div class="d-flex align-items-center justify-content-center mt-2">
-                        <h5  class="text-muted ml-2">${{number_format($product->price) }} </h5><h6 class="text-muted ml-2"><del>${{number_format($product->price) }}</del></h6>
+                        <h5  class="text-muted ml-2">Giá : Vnd {{number_format($product->price) }} </h5>
                     </div>
                     <div class="d-flex align-items-center justify-content-center mb-1">
                         <small class="fa fa-star text-primary mr-1"></small>

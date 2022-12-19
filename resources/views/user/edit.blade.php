@@ -8,9 +8,7 @@
                 <div class="container">
                     <div class="page-inner">
                         <header class="page-title-bar">
-                            <nav aria-label="breadcrumb">
-                                <a href="{{ route('user.index') }}" class="w3-button w3-red">Quay Lại</a>
-                            </nav>
+
                             <h1 class="page-title">Thay đổi thông tin</h1>
                         </header>
                         <div class="page-section">
@@ -33,19 +31,6 @@
                                                     @enderror
                                                 </div>
                                             </div>
-                                            {{-- <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label for="tf1">Mật Khẩu<abbr
-                                                            name="Trường bắt buộc">*</abbr></label>
-                                                    <input name="password" type="password" class="form-control"
-                                                        value="{{ $user->password }}">
-                                                    <small id="" class="form-text text-muted"></small>
-                                                    @error('password')
-                                                        <div class="text text-danger">{{ $message }}</div>
-                                                    @enderror
-                                                    <br>
-                                                </div>
-                                            </div> --}}
                                             <div class="col-lg-4">
                                                 <div class="form-group">
                                                     <label for="tf1">Họ Và Tên<abbr
@@ -87,9 +72,6 @@
                                                         name="Trường bắt buộc">*</abbr></label>
                                                 <select name="group_id" id="" class="form-control">
                                                     <option value="">--Vui lòng chọn--</option>
-                                                    {{-- @foreach ($groups as $group)
-                                                        <option value="{{ $group->id }}">{{ $group->name }}</option>
-                                                    @endforeach --}}
                                                     @foreach ($groups as $group)
                                                     <option
                                                         <?= $group->id == $user->group_id ? 'selected' : '' ?>
@@ -146,8 +128,8 @@
                                         </div>
                                         <div class="form-actions">
                                             <br><br><br><br>
-                                            <button class="w3-button w3-blue" type="submit">Lưu thay đổi</button>
-                                            <a class="w3-button w3-red" href="{{ route('user.index') }}">Hủy</a>
+                                            <button class="btn btn-success" type="submit">Lưu thay đổi</button>
+                                            <a class="btn btn-danger" href="{{ route('user.index') }}">Hủy</a>
                                         </div>
                                     </div>
                             </form>

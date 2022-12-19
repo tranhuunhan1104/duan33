@@ -6,15 +6,15 @@
         <div class="col-lg-8 mx-auto">
          <div class="card">
            <div class="card-header py-3 bg-transparent">
-              <h5 class="mb-0">Add New Product</h5>
+              <h5 class="mb-0">Thêm sản phẩm mới</h5>
              </div>
            <div class="card-body">
              <div class="border p-3 rounded">
              <form class="row g-3">
 
                <div class="col-12">
-                 <label class="form-label">Name</label>
-                 <input type="text" class="form-control" name="name" placeholder="Name...... ">
+                 <label class="form-label">Tên</label>
+                 <input type="text" class="form-control" name="name" placeholder="Tên...... ">
                  @error('name')
                 <div style="color: red">{{$message}}</div>
                 @enderror
@@ -22,7 +22,7 @@
 
 
                <div class="col-12">
-                 <label class="form-label">Status</label>
+                 <label class="form-label">Trạng thái</label>
                  <br>
                  <select name="status" id="">
                     <option value="02">Sản phẩm hot</option>
@@ -35,28 +35,28 @@
                </div>
 
                <div class="col-12">
-                 <label class="form-label">Full description</label>
-                 <textarea class="form-control" placeholder="Full description......." name="description" rows="4" cols="4"></textarea>
+                 <label class="form-label">Mô tả</label>
+                 <textarea class="form-control" placeholder="Mô tả......." name="description" rows="4" cols="4"></textarea>
                  @error('description')
                  <div style="color: red">{{$message}}</div>
                  @enderror
                </div>
 
                <div class="col-12">
-                 <label class="form-label">Quantity</label>
+                 <label class="form-label">Số lượng</label>
                  <input class="form-control" name="quantity" type="number">
                </div>
                <div class="col-12">
-                 <label class="form-label">Images</label>
+                 <label class="form-label">Hình ảnh</label>
                  <input class="form-control" name="image" type="file">
                </div>
                <div class="col-12">
-                 <label class="form-label">Price ($)</label>
-                 <input type="text" class="form-control" name="price" placeholder="Price........">
+                 <label class="form-label">Giá (vnd)</label>
+                 <input type="text" class="form-control" name="price" placeholder="Giá........">
                </div>
 
                <div class="col-12 col-md-6">
-                <label class="control-label" for="flatpickr01">Category<abbr
+                <label class="control-label" for="flatpickr01">Thể loại<abbr
                     name="category_id"></abbr></label>
                     @error('description')
                     <div style="color: red">{{$message}}</div>
@@ -68,7 +68,7 @@
                 @endforeach
             </select>
 
-            <input type="submit" value="Submit">
+            <input type="submit" value="Xác Nhận">
 
              </div>
             </div>

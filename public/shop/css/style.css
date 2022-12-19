@@ -3926,6 +3926,7 @@ input[type="button"].btn-block {
 }
 
 .nav-link {
+    
   display: block;
   padding: 0.5rem 1rem;
 }
@@ -9544,7 +9545,7 @@ a.text-dark:hover, a.text-dark:focus {
 
 .carousel-indicators .active {
   width: 30px;
-  background: #FFFFFF;
+  background: black;
 }
 
 .carousel-caption {

@@ -9,7 +9,6 @@
                     <div class="page-inner">
                         <header class="page-title-bar">
                             <nav aria-label="breadcrumb">
-                                {{-- <a href="{{ route('product.index') }}" class="w3-button w3-red">Quay Lại</a> --}}
                             </nav>
                             <h1 class="page-title">Tạo Tên Quyền</h1>
                         </header>
@@ -20,7 +19,6 @@
                                 @csrf
                                 <div class="form-group has-warning">
                                     <label class="col-lg-2">Tên Thể Loại</label>
-                                    {{-- <label class="col-lg-3 control-label">Name</label> --}}
                                     <div class="col-lg-8">
                                         <input type="text" value="{{ old('name') }}" name="name" placeholder=""
                                             class=" @error('name') is-invalid @enderror form-control ">

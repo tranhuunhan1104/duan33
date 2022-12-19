@@ -22,19 +22,15 @@
                         <label for="tf1">Tên Quyền:</label> {{$group->name}}
                     </div><br>
                     <div class="form-group">
-                        <label  class="w3-button w3-blue">{{ __('Cấp toàn bộ quyền') }}
-                            <input type="checkbox" id="checkAll" class="form-check-input"
+
+                        <input type="checkbox" id="checkAll" class="form-check-input"
                                 value="Quyền hạn">
-                        </label>
+                        <label  class="w3-button w3-blue">{{ __('Cấp toàn bộ quyền') }}
                         <div class="row">
                             @foreach ($group_names as $group_name => $roles)
                                 <div class="col-lg-6">
                                     <div class="list-group-header" style="color:rgb(2, 6, 249) ;">
                                         <h5> Nhóm: {{ __($group_name) }}</h5>
-                                        {{-- <label class="form-check form-switch ">{{ __('CheckAll') }}
-                                            <input  type="checkbox" id="checkAll" class="form-check-input"
-                                                value="Quyền hạn">
-                                        </label> --}}
                                     </div>
                                     @foreach ($roles as $role)
                                         <div class="list-group-item d-flex justify-content-between align-items-center">
@@ -46,7 +42,6 @@
                                                     value="{{ $role['id'] }}">
                                                 <span class="switcher-indicator"></span>
                                             </label>
-                                            <!-- /.switcher-control -->
                                         </div>
                                     @endforeach
                                 </div>
@@ -54,10 +49,8 @@
                         </div>
                     </div>
                     <div class="form-actions">
-                        {{-- @if (Auth::user()->hasPermission('Position_update')) --}}
-                        <button class="w3-button w3-blue" type="submit">Duyệt</button>
-                        {{-- @endif --}}
-                        <a href="{{ route('group.index') }}" class="w3-button w3-red"
+                        <button class="btn btn-success" type="submit">Duyệt</button>
+                        <a href="{{ route('group.index') }}" class="btn btn-danger"
                                         type="submit">Hủy</a>
                     </div>
                 </div>

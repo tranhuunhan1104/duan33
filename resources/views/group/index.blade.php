@@ -9,7 +9,7 @@
                     <h1 class="page-title">Nhóm Quyền</h1>
                     <nav aria-label="breadcrumb">
                         @if (Auth::user()->hasPermission('Group_create'))
-                                <a href="{{ route('group.create') }}" class="w3-button w3-red">Tạo nhóm quyền</a>
+                                <a href="{{ route('group.create') }}" class="btn btn-success">Tạo nhóm quyền</a>
                         @endif
                     </nav>
                 </header>
@@ -46,23 +46,21 @@
                                     <td>{{ $group->name }} </td>
                                     <td>Hiện có {{ count($group->users) }} người</td>
                                     <td>
-
                                         <form action="{{ route('group.destroy', $group->id) }}" method="POST">
                                             @csrf
                                             @method('PUT')
                                             @if (Auth::user()->hasPermission('Group_update'))
-                                            <a class="w3-btn w3-white " href="{{route('group.detail', $group->id)}}">Trao Quyền</a>
+                                            <a class="btn btn-primary " href="{{route('group.detail', $group->id)}}">Trao Quyền</a>
                                             @endif
                                             @if (Auth::user()->hasPermission('Group_update'))
                                             <a href="{{ route('group.edit', $group->id) }}"
-                                                class="w3-button w3-blue">Sửa</a>
+                                                class="btn btn-warning">Sửa</a>
                                             @endif
                                                 @if (Auth::user()->hasPermission('Group_forcedelete '))
                                                 <a data-href="{{ route('group.destroy', $group->id) }}"
                                                     id="{{ $group->id }}" class="btn btn-danger sm deleteIcon">Xóa</a>
                                                 @endif
                                         </form>
-
                                     </td>
                                 </tr>
                             @endforeach
@@ -73,7 +71,7 @@
             </div>
     </section>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js'></script>
+    {{-- <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js'></script> --}}
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

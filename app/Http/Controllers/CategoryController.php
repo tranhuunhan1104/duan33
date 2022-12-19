@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Category;
+use App\Models\User;
 
 class CategoryController extends Controller
 {
@@ -18,7 +19,10 @@ class CategoryController extends Controller
       $this->authorize('viewAny', Category::class);
       $categories = Category::paginate(3);
       $param =[
-        'categories'=> $categories
+        'categories'=> $categories,
+
+
+        
       ];
       return view('category.index', $param );
     }

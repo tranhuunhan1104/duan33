@@ -47,6 +47,7 @@ protected $table = 'users';
     ];
 
     /**
+     *
      * The attributes that should be cast.
      *
      * @var array<string, string>

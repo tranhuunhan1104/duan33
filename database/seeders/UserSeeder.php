@@ -16,8 +16,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        //
-
 
         $item = new User();
         $item->name = "Trần Hữu Nhân";

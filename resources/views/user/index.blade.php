@@ -16,40 +16,26 @@ border-radius:50%;
         <div class="table-agile-info">
             <div class="panel-panel-default">
                     <header class="page-title-bar">
-                        <h1 class="page-title">Sản phẩm</h1>
+                        <h1 class="page-title">Nhân sự</h1>
                         <a href="{{ route('user.create') }}" class="btn btn-info">Đăng ký tài khoản user</a>
                     </header>
-
-                    {{-- <button data-swal-toast-template="#my-template">
-                        Trigger toast
-                      </button>
-
-                      <template id='my-template'>
-                        <swal-title>Hey!</swal-title>
-                      </template> --}}
-
-
                     <hr>
-                    <div class="panel-heading">
-                      <h3> Nhân sự</h3>
-                    </div>
                     <div>
                         <table class="table" ui-jq="footable"
                             ui-options='{
-        "paging": {
-          "enabled": true
-        },
-        "filtering": {
-          "enabled": true
-        },
-        "sorting": {
-          "enabled": true
-        }}'>
+                                        "paging": {
+                                        "enabled": true
+                                        },
+                                        "filtering": {
+                                        "enabled": true
+                                        },
+                                        "sorting": {
+                                        "enabled": true
+                                        }}'>
 
                             <thead>
                                 <tr>
                                     <th data-breakpoints="xs">Stt</th>
-                                    {{-- <th data-breakpoints="xs">ID</th> --}}
                                     <th>Avatar</th>
                                     <th>Tên</th>
                                     <th>Phone</th>
@@ -61,32 +47,30 @@ border-radius:50%;
                                 @foreach ($users as $key => $user)
                                     <tr data-expanded="true" class="item-{{ $user->id }}">
                                         <td>{{  ++$key }}</td>
-                                        {{-- <td><a href="{{ route('user.show', $user->id) }}"><img id="avt" src="{{ asset('storage/images/' . $user->image) }}" alt=""></a></td> --}}
-                                        <td><a href="{{ route('user.show', $user->id) }}"><img id="avt" src="{{asset('public/uploads/product/' . $user->image)}}" alt=""></a></td>
-                                        <td><a href="{{ route('user.show', $user->id) }}">{{ $user->name }}</a></td>
+                                        <td><a href="{{ route('user.show', $user->id) }}"><img id="avt" src="{{asset('http://localhost/M3/casestudym3/storage/app/public/images/user/' . $user->image)}}" alt=""></a></td>
+                                        <td>{{ $user->name }}</td>
                                         <td>{{ $user->phone }}</td>
                                         <td>{{ $user->group->name }}</td>
                                         <td>
                                             @if (Auth::user()->hasPermission('User_update'))
                                             <a href="{{ route('user.edit', $user->id) }}"
-                                                class="w3-button w3-blue">Sửa</a>
+                                                class="btn btn-warning">Sửa</a>
                                             @endif
                                             @if (Auth::user()->hasPermission('User_forceDelete'))
                                             <a data-href="{{ route('user.destroy', $user->id) }}"
-                                                id="{{ $user->id }}" class="w3-button w3-red sm deleteIcon">Xóa</i></a>
+                                                id="{{ $user->id }}" class="btn btn-info deleteIcon">Xóa</i></a>
                                             @endif
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                       {{-- {{ $users->appends(request()->query()) }} --}}
                     </div>
                 </div>
             </div>
         </section>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js'></script>
+        {{-- <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js'></script> --}}
         <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.js"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
@@ -124,7 +108,7 @@ border-radius:50%;
                     Swal.fire({
                         icon: 'error',
                         title: 'Tuổi...?',
-                        text: 'Tuổi gì đòi xóa Supper Admin!',
+                        text: ' Supper Admin không thể xóa!',
                     })
                 }
             })

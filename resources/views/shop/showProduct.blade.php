@@ -32,8 +32,8 @@
                     </div>
                     <small class="pt-1">(99 Reviews)</small>
                 </div>
-                <h3 class="font-weight-semi-bold mb-4">{{number_format($product->price) }} $</h3>
-                <p class="mb-4">{{ $product->description }}</p>
+                <h3 class="font-weight-semi-bold mb-4">{{number_format($product->price) }} vnd</h3>
+                <p class="font-family">{{ $product->description }}</p>
 
 
                 <div class="d-flex align-items-center mb-4 pt-2">
@@ -50,7 +50,7 @@
                             </button>
                         </div>
                     </div>
-                    <a href="{{route('shop.store',$product->id)}}" id="{{ $product->id }}" class="btn btn-danger mt-20">Add To Cart</a>
+                    <a href="{{route('shop.store',$product->id)}}" id="{{ $product->id }}" class="btn btn-danger mt-20">Thêm vào giỏ hàng</a>
                 </div>
                 <div class="d-flex pt-2">
                     <strong class="text-dark mr-2">Share on:</strong>

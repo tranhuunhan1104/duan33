@@ -27,7 +27,7 @@
       <td>{{$item->date_at}}</td>
 
       <td>
-          <a  class='w3-button w3-blue' href="{{route('order.detail',$item->id)}}">Chi tiết</a>
+          <a  class='btn btn-info' href="{{route('order.detail',$item->id)}}">Chi tiết</a>
       </td>
     </tr>
     @endforeach

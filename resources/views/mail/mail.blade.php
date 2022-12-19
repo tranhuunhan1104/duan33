@@ -16,7 +16,7 @@
         <table role="presentation" style="width:602px;border-collapse:collapse;border:1px solid #cccccc;border-spacing:0;text-align:left;">
           <tr>
             <td align="center" style="padding:40px 0 30px 0;background:#70bbd9;">
-              <img src="https://scontent.fdad3-4.fna.fbcdn.net/v/t1.15752-9/312385965_1201401237107585_1990695696496467424_n.png?_nc_cat=104&ccb=1-7&_nc_sid=ae9488&_nc_ohc=1xviRidDj_gAX8ac3nP&_nc_ht=scontent.fdad3-4.fna&oh=03_AdThpuPiWbNBDb3X0GOpTzOVuefb4f6OMCbUX2c44eO54g&oe=63A2B4EB" alt="" width="300" style="height:auto;display:block;" />
+              <img src=https://iweb.tatthanh.com.vn/pic/3/blog/logo-shop-quan-ao-nam.jpg alt="" width="300" style="height:auto;display:block;" />
             </td>
           </tr>
           <tr>
@@ -39,11 +39,11 @@
                       <tr>
                         <td style="width:260px;padding:0;vertical-align:top;color:#153643;">
                           <p style="margin:0 0 25px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;"><img src="https://png.pngtree.com/png-vector/20220619/ourmid/pngtree-cartoon-asian-businessman-shows-both-hands-a-sign-thumb-up-png-image_5227065.png" alt="" width="260" style="height:auto;display:block;" /></p>
-                          <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;"><b><i>Hãy Dùng Mật Khẩu Này Để Truy Cập Tài Khoản Của Bạn</i></b><br>
+                          <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;"><b></b><br>
                             <b><i>Chúc Bạn Một Ngày Làm Việc Vui Vẻ!.</i></b><br>
                             <b><i>Thân Ái!.</i></b><br>
-                            <h4><i>admin: Trần Hữu Nhân (Shein Shop)</i></h4></p>
-                          <p style="margin:0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;"><a href="#" style="color:#ee4c50;text-decoration:underline;">Email Liên Hệ: <a href="mailto:phungvanphib1@gmail.com" style="color:rgb(17,85,204)"
+                            <h4><i>Admin: Trần Hữu Nhân (Shein Shop)</i></h4></p>
+                          <p style="margin:0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;"><a href="#" style="color:#ee4c50;text-decoration:underline;">Email Liên Hệ: <a href="mailto:tranhuunhan1104@gmail.com" style="color:rgb(17,85,204)"
                             target="_blank">tranhuunhan1104@gmail.com</a></a></p>
                         </td>
                         <td style="width:20px;padding:0;font-size:0;line-height:0;">&nbsp;</td>
@@ -51,7 +51,7 @@
                           <p style="margin:0 0 25px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;"><img src="https://img4.thuthuatphanmem.vn/uploads/2020/08/28/background-chao-mung-powerpoint_090351149.jpg" alt="" width="260" style="height:auto;display:block;" /></p>
                           <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;"><b><i>Chào Mừng Bạn Đã Gia Nhập Vào Công Ty Của Chúng Tôi</i></b><br>
                             <b><i>Chúng Tôi Rất Mong Muốn Bạn Luôn Đồng hành Cùng Chúng Tôi Và Cống Hiến Hiến Mình. Mọi Nổ Lực Của Bạn Sẽ Được Đền Đáp</i></b><br></p></p>
-                          <p style="margin:0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;"><a href="#" style="color:#ee4c50;text-decoration:underline;">Now Chào bé</a></p>
+                          <p style="margin:0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;"></p>
                         </td>
                       </tr>
                     </table>

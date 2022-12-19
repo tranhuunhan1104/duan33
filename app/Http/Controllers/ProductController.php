@@ -17,11 +17,7 @@ class ProductController extends Controller
     {
         $this->authorize('viewAny', Product::class);
         $products = Product::with('category')->paginate(3);
-        // dd($products);
         return view('product.index',compact(['products']));
-        // $products= Product::with('category')->orderBy('id','DESC')->get();
-
-        // return view('product.index')->with(compact('products'));
 
     }
 
@@ -48,7 +44,6 @@ class ProductController extends Controller
         $validated = $request->validate([
             'name' => 'required',
             'description' => 'required',
-
             'status' => 'required',
             'price' => 'required',
             'category_id' => 'required',
@@ -56,7 +51,6 @@ class ProductController extends Controller
             [
                 'name.required'=>'Không được để trống',
                 'description.required'=>'Không được để trống',
-
                 'status.required'=>'Không được để trống',
                 'price.required'=>'Không được để trống',
                 'category_id.required'=>'Không được để trống',

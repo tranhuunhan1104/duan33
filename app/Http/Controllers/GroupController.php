@@ -101,7 +101,6 @@ class GroupController extends Controller
         ];
         return redirect()->route('group.index')->with($notification);
     }
-
     /**
      * Remove the specified resource from storage.
      *

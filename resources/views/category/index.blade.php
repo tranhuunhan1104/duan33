@@ -7,12 +7,9 @@
            {{ session('status') }}
         </div>
         @endif
-
         <h4 class="card-title">
-            Display board</h4>
-        <p class="card-description">
-          Add class <code>.table-categories</code>
-        </p>
+            Danh Mục</h4>
+
         <form class="navbar-form navbar-left"  action="{{ route('category.search') }}" method="GET">
             @csrf
             <div class="row">
@@ -37,11 +34,11 @@
                     #
                 </th>
                 <th>
-                    Category_name
+                    Tên danh mục
                 </th>
 
                 <th>
-                   Action
+                   Tùy chọn
                 </th>
               </tr>
             </thead>
@@ -56,7 +53,7 @@
                         @method('PUT')
                     <td>
 
-                            <button type="submit" class="w3-button w3-red"
+                            <button type="submit" class="btn btn-success"
                             onclick="return confirm('Chuyên vào thùng rác')">Xóa</button>
 
                         <a href="{{route('category_edit',[$team->id])}}" class="btn btn-primary">Sửa</a>

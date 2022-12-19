@@ -11,7 +11,7 @@
         <div class="col-lg-8 mx-auto">
          <div class="card">
            <div class="card-header py-3 bg-transparent">
-              <h5 class="mb-0">Edit Product</h5>
+              <h5 class="mb-0">Chỉnh sửa sản phẩm</h5>
              </div>
            <div class="card-body">
              <div class="border p-3 rounded">
@@ -21,7 +21,7 @@
                     <input type="text" class="form-control" value="{{$product->name}}" name="name">
                   </div>
                <div class="col-12">
-                 <label class="form-label">Status</label>
+                 <label class="form-label">Trạng thái</label>
                  <br>
                  <select name="status" id="">
                     <option value="02">Sản phẩm hot</option>
@@ -29,23 +29,23 @@
                  </select>
                </div>
                <div class="col-12">
-                <label class="form-label">Quantity</label>
+                <label class="form-label">Số lượng</label>
                 <input type="text" class="form-control" value="{{$product->quantity}}" name="quantity">
               </div>
                <div class="col-12">
-                 <label class="form-label">Full description</label>
+                 <label class="form-label">Mô tả</label>
                  <textarea class="form-control" name="description" rows="4" cols="4">{{$product->description}}</textarea>
                </div>
                <div class="col-12">
-                <label class="form-label">Images</label>
+                <label class="form-label">Hình ảnh</label>
                 <input class="form-control" name="image" value="{{$product->image  }}" type="file">
               </div>
                <div class="col-12">
-                 <label class="form-label">Price ($)</label>
+                 <label class="form-label">Giá (vnd)</label>
                  <input type="text" class="form-control" value="{{$product->price}}" name="price" >
                </div>
                <div class="col-12 col-md-6">
-                <label class="control-label" for="flatpickr01">Category<abbr
+                <label class="control-label" for="flatpickr01">Thể loại<abbr
                     name="trường bắt buộc"></abbr></label>
                     <select name="category_id" id="" class="form-control">
                         <option value="">--Vui lòng chọn--</option>
@@ -58,7 +58,7 @@
                     </select>
 
 
-            <input type="submit" value="Submit">
+            <input type="submit" value="Xác nhận">
 
              </div>
             </div>

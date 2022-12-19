@@ -96,14 +96,12 @@
         <div class="gallery-grid">
             <br>
             <a class="example-image-link"
-                href="{{ asset('storage/images/' . $user->image) }}"
+
                 data-lightbox="example-set"
                 data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vitae cursus ligula">
-                <img id="avtshow" src="{{ asset('storage/images/' . $user->image) }}"
+                <img id="avtshow" src="{{asset('http://localhost/M3/casestudym3/storage/app/public/images/user/' . $user->image)}}"
                     alt="" />
-                <div class="captn">
-                    <h4>Xem Avt</h4>
-                </div>
+
             </a>
         </div>
         <div class="panel-body">
@@ -134,46 +132,6 @@
             </div>
         </div>
     </section>
-</div>
-<div class="col-sm-9 com-w3ls">
-    <section class="panel">
-        <div class="gallery-grid">
-            <div class="panel-body">
-                <ul class="nav nav-pills nav-stacked labels-info ">
-                    <li>
-                        <h3>Tên: {{ $user->name }}</h3>
-                    </li>
-                    <hr>
-                    <li>
-                        <h3>Email: {{ $user->email }}</h3>
-                    </li>
-                    <li>
-                        <h3>Số điện thoại: {{ $user->phone }}</h3>
-                    </li>
-                    <hr>
-                    <li>
-                        <h3>Địa chỉ: {{ $user->address }}</h3>
-                    </li>
-                    <li>
-                        <h3>Giới tính: {{ $user->gender }}</h3>
-                    </li>
-                    <li>
-                        <h3>Ngày sinh: {{ $user->birthday }}</h3>
-                    </li>
-                    <hr>
-                    <li>
-                        <h3>Đã tham gia: {{ $user->created_at }}</h3>
-                    </li>
-                </ul>
-                <br>
-                <br>
-            </div>
-        </div>
-    </section>
-</div>
-    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> --}}
 </div>
 </div>
 </table>

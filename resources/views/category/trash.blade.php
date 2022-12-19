@@ -11,11 +11,11 @@
                     #
                 </th>
                 <th>
-                    Category_name
+                    Tên danh mục đã xóa
                 </th>
 
                 <th>
-                   Action
+                   Tùy chọn
                 </th>
               </tr>
             </thead>
@@ -29,9 +29,9 @@
                         <form action="{{ route('category.restoredelete', $category->id) }}" method="POST">
                             @csrf
                             @method('put')
-                            <button type="submit" class="w3-button w3-blue">Khôi Phục</button>
+                            <button type="submit" class="btn btn-success">Khôi Phục</button>
                             <a data-href="{{ route('category_destroy', $category->id) }}"
-                                id="{{ $category->id }}" class="w3-button w3-red sm deleteIcon">Xóa</a>
+                                id="{{ $category->id }}" class="btn btn-danger">Xóa</a>
 
                         </form>
                     </td>
@@ -43,7 +43,7 @@
         {{-- <tr>{{ $categories->appends(request()->query()) }}</tr> --}}
         </div>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js'></script>
+        {{-- <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js'></script> --}}
         <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.js"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

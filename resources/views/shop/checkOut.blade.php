@@ -78,14 +78,14 @@
                     <div class="border-bottom pt-3 pb-2">
                         <div class="d-flex justify-content-between mb-3">
                             <h6>Tổng phụ</h6>
-                            <h6>${{number_format( $total) }}</h6>
+                            <h6>{{number_format( $total) }} Vnd </h6>
                         </div>
 
                     </div>
                     <div class="pt-2">
                         <div class="d-flex justify-content-between mt-2">
                             <h5>Tổng tiền</h5>
-                            <h5>${{ number_format($total) }}</h5>
+                            <h5>{{ number_format($total) }} Vnd </h5>
                         </div>
                     </div>
 
@@ -96,8 +96,7 @@
                 @endif
                 <div class="pt-2">
                     <div class="d-flex justify-content-between mt-2">
-                        <h5>Số tiền cần trả</h5>
-                        <h5>${{number_format( $totalAll) }}</h5>
+                        <h5>Số tiền cần trả : {{number_format( $totalAll) }}  Vnd </h5>
                     </div>
                 </div>
                     </div>

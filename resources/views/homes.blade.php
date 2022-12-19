@@ -116,50 +116,6 @@
                     <div class="d-flex flex-wrap justify-content-between">
                       <h4 class="card-title mb-3">Những mẫu được dự đoán sẽ hot</h4>
                     </div>
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <div class="d-flex justify-content-between mb-4">
-                              <div class="font-weight-medium">Empolyee Name</div>
-                              <div class="font-weight-medium">This Month</div>
-                            </div>
-                            <div class="d-flex justify-content-between mb-4">
-                              <div class="text-secondary font-weight-medium">Connor Chandler</div>
-                              <div class="small">$ 4909</div>
-                            </div>
-                            <div class="d-flex justify-content-between mb-4">
-                              <div class="text-secondary font-weight-medium">Russell Floyd</div>
-                              <div class="small">$857</div>
-                            </div>
-                            <div class="d-flex justify-content-between mb-4">
-                              <div class="text-secondary font-weight-medium">Douglas White</div>
-                              <div class="small">$612	</div>
-                            </div>
-                            <div class="d-flex justify-content-between mb-4">
-                              <div class="text-secondary font-weight-medium">Alta Fletcher </div>
-                              <div class="small">$233</div>
-                            </div>
-                            <div class="d-flex justify-content-between mb-4">
-                              <div class="text-secondary font-weight-medium">Marguerite Pearson</div>
-                              <div class="small">$233</div>
-                            </div>
-                            <div class="d-flex justify-content-between mb-4">
-                              <div class="text-secondary font-weight-medium">Leonard Gutierrez</div>
-                              <div class="small">$35</div>
-                            </div>
-                            <div class="d-flex justify-content-between mb-4">
-                              <div class="text-secondary font-weight-medium">Helen Benson</div>
-                              <div class="small">$43</div>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <div class="text-secondary font-weight-medium">Helen Benson</div>
-                                <div class="small">$43</div>
-                              </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>

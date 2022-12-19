@@ -166,12 +166,9 @@ section .noi-dung .form .icon-dang-nhap li{
 
 </style>
 <section>
-    <!--Bắt Đầu Phần Hình Ảnh-->
     <div class="img-bg">
         <img src="https://niemvuilaptrinh.ams3.cdn.digitaloceanspaces.com/tao_trang_dang_nhap/hinh_anh_minh_hoa.jpg" alt="Hình Ảnh Minh Họa">
     </div>
-    <!--Kết Thúc Phần Hình Ảnh-->
-    <!--Bắt Đầu Phần Nội Dung-->
     <div class="noi-dung">
         <div class="form">
             <h2>Trang Đăng Nhập</h2>

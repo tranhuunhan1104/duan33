@@ -90,7 +90,7 @@
             background: theme-color(info);
           }
         }
-        
+
     }
   }
   .nav {
@@ -209,7 +209,7 @@
         &:hover {
           > .nav-link {
             background: $sidebar-dark-menu-hover-bg;
-            color: $sidebar-dark-menu-hover-color;                                    
+            color: $sidebar-dark-menu-hover-color;
           }
         }
       }
@@ -341,10 +341,10 @@
           > .nav-link {
             background: $sidebar-light-menu-active-bg;
             .menu-title {
-              color: $sidebar-light-menu-active-color; 
+              color: $sidebar-light-menu-active-color;
             }
             i {
-              color: $sidebar-light-menu-icon-active-color; 
+              color: $sidebar-light-menu-icon-active-color;
             }
           }
         }
@@ -354,7 +354,7 @@
           &:hover {
             > .nav-link {
               background: $sidebar-light-menu-hover-bg;
-              color: $sidebar-light-menu-hover-color;                                    
+              color: $sidebar-light-menu-hover-color;
             }
           }
         }
