@@ -30,7 +30,7 @@
                         <small class="fas fa-star-half-alt"></small>
                         <small class="far fa-star"></small>
                     </div>
-                    <small class="pt-1">(99 Reviews)</small>
+                    <small class="pt-1">(99 Đánh giá)</small>
                 </div>
                 <h3 class="font-weight-semi-bold mb-4">{{number_format($product->price) }} vnd</h3>
                 <p class="font-family">{{ $product->description }}</p>

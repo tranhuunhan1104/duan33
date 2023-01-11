@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-3">
                     <div class="form-group">
-                        <input type="text" name="search" class="form-control" placeholder="Search">
+                        <input type="text" name="search" class="form-control" placeholder="Tìm kiếm">
                     </div>
                 </div>
                 <div class="col-4">

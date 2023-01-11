@@ -37,6 +37,7 @@
                             value="{{ Auth()->guard('customers')->user()->address }}" id="user_address"
                                             placeholder="">
                         </div>
+                        <button type="submit" class="btn btn-block btn-primary font-weight-bold py-3">Đặt hàng</button>
                         @else
                             <h4>Vui lòng đăng nhập trước khi thanh toán nhé</h4>
                             <a href="{{ route('login.index') }}" class="btn btn-danger">Đăng Nhập</a>
@@ -103,7 +104,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-block btn-primary font-weight-bold py-3">Đặt hàng</button>
+
 
         </form>
 

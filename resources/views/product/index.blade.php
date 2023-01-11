@@ -20,7 +20,7 @@
                 <div class="row">
                     <div class="col-3">
                         <div class="form-group">
-                            <input type="text" name="search_product" class="form-control" placeholder="Search">
+                            <input type="text" name="search_product" class="form-control" placeholder="Tìm kiếm">
                         </div>
                     </div>
                     <div class="col-4">
@@ -72,9 +72,14 @@
                     <button onclick="return confirm('Bạn có muốn xóa truyện này không?');" class="btn btn-danger">Xóa</button>
                     </form>
                     <a href="{{route('product.edit',[$team->id])}}" class="btn btn-primary">Sửa</a>
-            </td>
+                 </td>
+            </form>
           </tr>
 @endforeach
+
+    </tbody>
+</table>
+
   {{ $products->appends(request()->query()) }}
 
 @endsection
