@@ -17,8 +17,7 @@ class ProductController extends Controller
     {
         $this->authorize('viewAny', Product::class);
         $products = Product::with('category')->paginate(3);
-        return view('product.index',compact(['products']));
-
+        return view('product.index', compact(['products']));
     }
 
     /**
@@ -41,27 +40,29 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'status' => 'required',
-            'price' => 'required',
-            'category_id' => 'required',
-        ],
+        $validated = $request->validate(
             [
-                'name.required'=>'Không được để trống',
-                'description.required'=>'Không được để trống',
-                'status.required'=>'Không được để trống',
-                'price.required'=>'Không được để trống',
-                'category_id.required'=>'Không được để trống',
-            ]);
+                'name' => 'required',
+                'description' => 'required',
+                'status' => 'required',
+                'price' => 'required',
+                'category_id' => 'required',
+            ],
+            [
+                'name.required' => 'Không được để trống',
+                'description.required' => 'Không được để trống',
+                'status.required' => 'Không được để trống',
+                'price.required' => 'Không được để trống',
+                'category_id.required' => 'Không được để trống',
+            ]
+        );
         $product = new Product();
         $product->name = $request->name;
         $product->price = $request->price;
         $product->quantity = $request->quantity;
         $product->description = $request->description;
         $product->status = $request->status;
-        $product->category_id  = $request->category_id ;
+        $product->category_id  = $request->category_id;
         if ($request->hasFile('image')) {
             $get_image = $request->file('image');
             $path = 'public\uploads\product';
@@ -75,7 +76,7 @@ class ProductController extends Controller
         // dd($product);
         $product->save();
         // alert()->success('Thêm sản phẩm','thành công');
-        return redirect()->route('product.index')->with('status','Thêm sản phẩm thành công');
+        return redirect()->route('product.index')->with('status', 'Thêm sản phẩm thành công');
     }
 
     /**
@@ -88,12 +89,12 @@ class ProductController extends Controller
     {
         $this->authorize('view', Product::class);
         $productshow = Product::findOrFail($id);
-        $param =[
-            'productshow'=>$productshow,
+        $param = [
+            'productshow' => $productshow,
         ];
 
         // $productshow-> show();
-        return view('product.show',  $param );
+        return view('product.show',  $param);
     }
 
     /**
@@ -102,12 +103,19 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public  function trash()
+    {
+        $products = Product::onlyTrashed()->paginate(3);
+        $param = ['products' => $products];
+        return view('product.trash', $param);
+        dd(223);
+    }
     public function edit($id)
     {
         $this->authorize('update', Product::class);
         $product = Product::find($id);
         $categories = Category::get();
-        return view('product.edit', compact(['product','categories']));
+        return view('product.edit', compact(['product', 'categories']));
     }
 
     /**
@@ -125,25 +133,25 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->description = $request->description;
         $product->status = $request->status;
-        $product->category_id  = $request->category_id ;
+        $product->category_id  = $request->category_id;
 
-        $get_image=$request->image;
-        if($get_image){
-            $path='public\uploads\product'.$product->image;
-            if(file_exists($path)){
+        $get_image = $request->image;
+        if ($get_image) {
+            $path = 'public\uploads\product' . $product->image;
+            if (file_exists($path)) {
                 unlink($path);
             }
-        $path='public\uploads\product';
-        $get_name_image=$get_image->getClientOriginalName();
-        $name_image=current(explode('.',$get_name_image));
-        $new_image=$name_image.rand(0,99).'.'.$get_image->getClientOriginalExtension();
-        $get_image->move($path,$new_image);
-        $product->image=$new_image;
-        $data['product_image']=$new_image;
+            $path = 'public\uploads\product';
+            $get_name_image = $get_image->getClientOriginalName();
+            $name_image = current(explode('.', $get_name_image));
+            $new_image = $name_image . rand(0, 99) . '.' . $get_image->getClientOriginalExtension();
+            $get_image->move($path, $new_image);
+            $product->image = $new_image;
+            $data['product_image'] = $new_image;
         }
         $product->save();
 
-        return redirect()->route('product.index')->with('status','Sửa sản phẩm thành công');
+        return redirect()->route('product.index')->with('status', 'Sửa sản phẩm thành công');
     }
 
     /**
@@ -154,19 +162,35 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $this->authorize('viewtrash', Product::class);
-        $product = Product::find($id);
-        $product->delete();
-        return redirect()->route('product.index')->with('status','Xóa sản phẩm thành công');;
-
+        $this->authorize('forceDelete', Product::class);
+        $product = Product::onlyTrashed()->findOrFail($id);
+        $product->forceDelete();
+        return redirect()->back()->with('status', 'Xóa sản phẩm thành công');
     }
     public function search(Request $request)
     {
-    $search = $request->input('search_product');
-    if (!$search) {
+        $search = $request->input('search_product');
+        if (!$search) {
+            return redirect()->route('product.index');
+        }
+        $products = Product::where('name', 'LIKE', '%' . $search . '%')->paginate(5);
+        return view('product.index', compact('products'));
+    }
+
+
+    public  function softdeletes($id)
+    {
+        date_default_timezone_set("Asia/Ho_Chi_Minh");
+        $product = Product::findOrFail($id);
+        $product->deleted_at = date("Y-m-d h:i:s");
+        $product->save();
         return redirect()->route('product.index');
     }
-    $products = Product::where('name', 'LIKE', '%' . $search . '%')->paginate(5);
-    return view('product.index', compact('products'));
+    public function restoredelete($id)
+    {
+        // $this->authorize('restore', Category::class);
+        $products = Product::withTrashed()->where('id', $id);
+        $products->restore();
+        return redirect()->route('product.trash');
     }
 }

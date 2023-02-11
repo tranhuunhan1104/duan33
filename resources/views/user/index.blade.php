@@ -16,8 +16,8 @@ border-radius:50%;
         <div class="table-agile-info">
             <div class="panel-panel-default">
                     <header class="page-title-bar">
-                        <h1 class="page-title">Nhân sự</h1>
-                        <a href="{{ route('user.create') }}" class="btn btn-info">Đăng ký tài khoản user</a>
+                        <h1 class="offset-4">Nhân sự</h1>
+                        <a href="{{ route('user.create') }}" class="btn btn-info">Đăng ký tài khoản nhân sự</a>
                     </header>
                     <hr>
                     <div>

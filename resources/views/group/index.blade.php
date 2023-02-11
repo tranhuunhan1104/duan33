@@ -6,17 +6,17 @@
         <div class="table-agile-info">
             <div class="panel-panel-default">
                 <header class="page-title-bar">
-                    <h1 class="page-title">Nhóm Quyền</h1>
-                    <nav aria-label="breadcrumb">
-                        @if (Auth::user()->hasPermission('Group_create'))
-                                <a href="{{ route('group.create') }}" class="btn btn-success">Tạo nhóm quyền</a>
-                        @endif
-                    </nav>
+
                 </header>
                 <hr>
                 <div class="panel-heading">
-                   <h3>Danh Sách Nhóm Quyền</h3>
+                    <h2 class="offset-4">Danh Sách Nhóm Nhân Viên</h2>
                 </div>
+                <nav aria-label="breadcrumb">
+                    @if (Auth::user()->hasPermission('Group_create'))
+                     <a href="{{ route('group.create') }}" class="btn btn-success">Tạo nhóm nhân viên</a>
+                    @endif
+                </nav>
                 <div>
                     <table class="table" ui-jq="footable"
                         ui-options='{
@@ -32,7 +32,6 @@
                         <thead>
                             <tr>
                                 <th>STT</th>
-                                <th>id</th>
                                 <th>Tên</th>
                                 <th>Người đảm nhận</th>
                                 <th data-breakpoints="xs">Tùy Chỉnh</th>
@@ -42,7 +41,7 @@
                             @foreach ($groups as $key => $group)
                                 <tr data-expanded="true" class="item-{{ $group->id }}">
                                     <td>{{ $key + 1 }}</td>
-                                    <td>{{ $group->id }}</td>
+
                                     <td>{{ $group->name }} </td>
                                     <td>Hiện có {{ count($group->users) }} người</td>
                                     <td>

@@ -16,15 +16,15 @@ class CategoryController extends Controller
      */
     public function index()
     {
-      $this->authorize('viewAny', Category::class);
-      $categories = Category::paginate(3);
-      $param =[
-        'categories'=> $categories,
+        $this->authorize('viewAny', Category::class);
+        $categories = Category::paginate(3);
+        $param = [
+            'categories' => $categories,
 
 
-        
-      ];
-      return view('category.index', $param );
+
+        ];
+        return view('category.index', $param);
     }
 
     /**
@@ -46,24 +46,23 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required',
-        ],
+        $validated = $request->validate(
             [
-                'name.required'=>'Không được để trống',
+                'name' => 'required',
+            ],
+            [
+                'name.required' => 'Không được để trống',
             ]
             // $.ajax(option)
             // alertify.success('Cập nhật thành công');
 
-    );
+        );
         $category = new Category();
         $category->name = $request->name;
         $category->save($request->all());
         // alert()->success('Thêm sản phẩm','thành công');
         // return redirect('home');
-        return redirect()->route('category.index')->with('status','Thêm danh mục thành công');
-
-
+        return redirect()->route('category.index')->with('status', 'Thêm danh mục thành công');
     }
 
     /**
@@ -99,14 +98,13 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-    $categories = Category::find($id);
-    $categories->name = $request->name;
-    $categories->save();
-    alert()->success('Sửa sản phẩm','thành công');
-    // return redirect('home');
-    return redirect()->route('category.index')->with('status','Sửa danh mục thành công');
-}
-
+        $categories = Category::find($id);
+        $categories->name = $request->name;
+        $categories->save();
+        alert()->success('Sửa sản phẩm', 'thành công');
+        // return redirect('home');
+        return redirect()->route('category.index')->with('status', 'Sửa danh mục thành công');
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -116,20 +114,21 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $this->authorize('forceDelete', Category::class);
-        $category=Category::onlyTrashed()->findOrFail($id);
-        $category->forceDelete()->with('status','Xóa danh mục thành công');
-
+        $category = Category::onlyTrashed()->findOrFail($id);
+        $category->forceDelete();
+        return redirect()->back()->with('status', 'Xóa danh mục thành công');
     }
     public function search(Request $request)
     {
-    $search = $request->input('search');
-    if (!$search) {
-        return redirect()->route('category.index');
+        $search = $request->input('search');
+        if (!$search) {
+            return redirect()->route('category.index');
+        }
+        $categories = Category::where('name', 'LIKE', '%' . $search . '%')->paginate(5);
+        return view('category.index', compact('categories'));
     }
-    $categories = Category::where('name', 'LIKE', '%' . $search . '%')->paginate(5);
-    return view('category.index', compact('categories'));
-    }
-    public  function softdeletes($id){
+    public  function softdeletes($id)
+    {
         $this->authorize('delete', Category::class);
         date_default_timezone_set("Asia/Ho_Chi_Minh");
         $category = Category::findOrFail($id);
@@ -137,19 +136,22 @@ class CategoryController extends Controller
         $category->save();
         return redirect()->route('category.index');
     }
-    public  function trash(){
+    public  function trash()
+    {
         $this->authorize('viewtrash', Category::class);
         $categories = Category::onlyTrashed()->get();
         $param = ['categories'    => $categories];
         return view('category.trash', $param);
     }
-    public function restoredelete($id){
+    public function restoredelete($id)
+    {
         $this->authorize('restore', Category::class);
-        $categories=Category::withTrashed()->where('id', $id);
+        $categories = Category::withTrashed()->where('id', $id);
         $categories->restore();
         return redirect()->route('category.trash');
-
-
     }
-
+    public function viewtrash()
+    {
+        return view('viewTrash');
+    }
 }

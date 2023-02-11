@@ -1,29 +1,23 @@
 @extends('layout.master')
 @section('content')
-<form method="POST" action="{{route('category.update',[$categories->id])}}" enctype= "multipart/form-data" >
-    @method('PUT')
-    @csrf
-         <div class="col-lg-12 grid-margin stretch-card">
-              <div class="card">
+    <form method="POST" action="{{ route('category.update', [$categories->id]) }}" enctype="multipart/form-data">
+        @method('PUT')
+        @csrf
+        <div class="row">
+            <div class="card-body">
+                <h2 class="offset-4">
+                    Chỉnh Sửa Danh Mục Sản Phẩm</h2>
                 <div class="card-body">
-                  <h4 class="card-title">Bảng chỉnh sửa</h4>
+                    <div class="border p-3 rounded">
+                        <form class="row g-3">
 
-                  <div class="table-responsive pt-3">
-                    <table class="table table-bordered">
-                      <thead>
-                        <tr>
-                          <th>Tên thể loại</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><input type="text" id="fname" name="name" value="{{$categories->name}}"  ></td>
-                        </tr>
-                        <tr><input class="btn btn-info" type="submit" value="Xác nhận"></tr>
-                      </tbody>
-                    </table>
-                  </div>
+                            <div class="col-12">
+                                <h2 class="form-label">Tên danh mục</h2>
+                                <input type="text" class="form-control" value="{{ $categories->name }}" name="name">
+                                <tr><input class="btn btn-info" type="submit" value="Xác nhận"></tr>
+                            </div>
+                    </div>
                 </div>
-              </div>
             </div>
-@endsection
+        </div>
+    @endsection

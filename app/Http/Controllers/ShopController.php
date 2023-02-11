@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Mail;
 
 class ShopController extends Controller
 {
-   /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -70,19 +70,19 @@ class ShopController extends Controller
     public function index()
     {
         $product = Product::get();
-        $param =[
-            'product'=> $product
-          ];
-        return view('shop.shop',$param );
+        $param = [
+            'product' => $product
+        ];
+        return view('shop.shop', $param);
     }
 
     public function shop()
     {
         $product = Product::get();
-      $param =[
-        'product'=> $product
-      ];
-      return view('shop', $param );
+        $param = [
+            'product' => $product
+        ];
+        return view('shop', $param);
         // return view('layout.shop' );
     }
 
@@ -165,15 +165,15 @@ class ShopController extends Controller
         return redirect()->route('cart.index');
     }
     public function show($id)
-{
-    $product = Product::find($id);
-    $categorys = Category::get();
-    $param = [
-        'product' => $product,
-        'categorys' => $categorys
-    ];
-    return view('shop.showproduct',$param);
-}
+    {
+        $product = Product::find($id);
+        $categorys = Category::get();
+        $param = [
+            'product' => $product,
+            'categorys' => $categorys
+        ];
+        return view('shop.showproduct', $param);
+    }
 
     /**
      * Display the specified resource.
@@ -250,30 +250,30 @@ class ShopController extends Controller
             $order->total = $request->totalAll;
             $order->save();
         }
-                $count_product = count($request->product_id);
-                for ($i = 0; $i < $count_product; $i++) {
-                    $orderItem = new OrderDetail();
-                    $orderItem->order_id =  $order->id;
-                    $orderItem->product_id = $request->product_id[$i];
-                    $orderItem->quantity = $request->quantity[$i];
-                    $orderItem->total = $request->total[$i];
-                    $orderItem->save();
-                    session()->forget('cart');
-                    DB::table('products')
-                        ->where('id', '=', $orderItem->product_id)
-                        ->decrement('quantity', $orderItem->quantity);
-                }
-                $notification = [
-                    'message' => 'success',
-                ];
-                $data = [
-                    'name' => $request->name,
-                    'pass' => $request->password,
-                ];
-                Mail::send('mail.mail', compact('data'), function ($email) use($request) {
-                    $email->subject('Shein Shop');
-                    $email->to($request->email, $request->name);
-                });
+        $count_product = count($request->product_id);
+        for ($i = 0; $i < $count_product; $i++) {
+            $orderItem = new OrderDetail();
+            $orderItem->order_id =  $order->id;
+            $orderItem->product_id = $request->product_id[$i];
+            $orderItem->quantity = $request->quantity[$i];
+            $orderItem->total = $request->total[$i];
+            $orderItem->save();
+            session()->forget('cart');
+            DB::table('products')
+                ->where('id', '=', $orderItem->product_id)
+                ->decrement('quantity', $orderItem->quantity);
+        }
+        $notification = [
+            'message' => 'success',
+        ];
+        $data = [
+            'name' => $request->name,
+            'pass' => $request->password,
+        ];
+        Mail::send('mail.mail', compact('data'), function ($email) use ($request) {
+            $email->subject('Shein Shop');
+            $email->to($request->email, $request->name);
+        });
 
         // dd($request);
         // alert()->success('Thêm Đơn Đặt: '.$request->name,'Thành Công');
@@ -287,4 +287,3 @@ class ShopController extends Controller
         // }
     }
 }
-

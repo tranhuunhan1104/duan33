@@ -1,93 +1,44 @@
 @extends('layout.master')
 @section('content')
-
-
-
-        <div class="table-responsive pt-3">
-          <table class="table table-info">
+<h2 class="offset-4">Thùng rác danh mục sản phẩm</h2>
+    <div class="table-responsive pt-3">
+        <table class="table table-info" style="width:100%">
             <thead>
-              <tr>
-                <th>
-                    #
-                </th>
-                <th>
-                    Tên danh mục đã xóa
-                </th>
+                <tr>
+                    <th style="width:35%">
+                        #
+                    </th>
+                    <th>
+                        Tên danh mục đã xóa
+                    </th>
 
-                <th>
-                   Tùy chọn
-                </th>
-              </tr>
+                    <th>
+                        Tùy chọn
+                    </th>
+                </tr>
             </thead>
             <tbody>
                 @foreach ($categories as $key => $category)
-                <tr data-expanded="true" class="item-{{ $category->id }}">
-                    <td>{{ $key + 1 }}</td>
-                    <td>{{ $category->name }}</td>
+                    <tr data-expanded="true" class="item-{{ $category->id }}">
+                        <td>{{ $key + 1 }}</td>
+                        <td>{{ $category->name }}</td>
 
-                    <td>
-                        <form action="{{ route('category.restoredelete', $category->id) }}" method="POST">
-                            @csrf
-                            @method('put')
-                            <button type="submit" class="btn btn-success">Khôi Phục</button>
-                            <a data-href="{{ route('category_destroy', $category->id) }}"
-                                id="{{ $category->id }}" class="btn btn-danger">Xóa</a>
+                        <td>
+                            <form action="{{ route('category.restoredelete', $category->id) }}" method="POST">
+                                @csrf
+                                @method('put')
+                                <button type="submit" class="btn btn-success">Khôi Phục</button>
+                                <a href="{{ route('category_destroy', $category->id) }}" id="{{ $category->id }}"
+                                    class="btn btn-danger">Xóa</a>
 
-                        </form>
-                    </td>
-                    @endforeach
+                            </form>
+                        </td>
+                @endforeach
 
 
             </tbody>
         </table>
         {{-- <tr>{{ $categories->appends(request()->query()) }}</tr> --}}
-        </div>
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
-        {{-- <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js'></script> --}}
-        <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.10.25/datatables.min.js"></script>
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-        <script>
-            $(document).on('click', '.deleteIcon', function(e) {
-                e.preventDefault();
-                let id = $(this).attr('id');
-                let href = $(this).data('href');
-                let csrf = '{{ csrf_token() }}';
-                console.log(id);
-                Swal.fire({
-                    title: 'Bạn có chắc không?',
-                    text: "Bạn sẽ không thể hoàn nguyên điều này!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Có, xóa!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            url: href,
-                            method: 'delete',
-                            data: {
-                                _token: csrf
-                            },
-                            success: function(res) {
-                                Swal.fire(
-                                    'Deleted!',
-                                    'Tệp của bạn đã bị xóa!',
-                                    'success'
-                                )
-                                $('.item-' + id).remove();
-                            },
-                        });
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'lỗi rồi...',
-                            text: 'Đã xảy ra lỗi!',
-                        })
-                    }
-                })
-            });
-        </script>
-
-
-  @endsection
+    </div>
+    <a style="width:7%" class="btn btn-info" href="{{ route('viewtrash') }}">Quay lại</a>
+@endsection
