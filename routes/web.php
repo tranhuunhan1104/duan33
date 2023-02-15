@@ -1,13 +1,10 @@
 <?php
 
 use App\Exports\OrderExport;
-use App\Http\Controllers\AminController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\CartController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LogincustomerController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ShopController;
@@ -33,11 +30,14 @@ Route::get('/', function () {
 Route::get('/trang-chu', function () {
     return view('homes');
 });
-Route::middleware(['auth'])->group(function(){
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/postlogin', [AuthController::class, 'postlogin'])->name('postlogin');
 
 
+
+Route::prefix('/')->middleware(['auth', 'preventBackHistory'])->group(function () {
 Route::get('/home', [HomeController::class,'index'])->name('home');
-Route::get('/help', [HomeController::class,'help'])->name('help');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // category=====================
 Route::get('/user/{id}', [CategoryController::class, 'edit'])->name('category_edit');
 Route::put('/user/{id}', [CategoryController::class, 'update'])->name('category.update');
@@ -63,11 +63,9 @@ Route::get('/product/{id}', [ProductController::class, 'edit'])->name('product.e
 // search======================
 Route::get('/search-category', [CategoryController::class, 'search'])->name('category.search');
 Route::get('/search-product', [ProductController::class, 'search'])->name('product.search');
-});
 
-Auth::routes();
-Route::get('/auth/redirect/{provider}', [SocialController::class, 'redirect']);
-Route::get('/callback/{provider}', [SocialController::class, 'callback']);
+
+
 
 //shop
 
@@ -117,4 +115,5 @@ Route::group(['prefix' => 'groups'], function () {
     Route::put('/updatepass/{id}', [UserController::class, 'updatepass'])->name('user.updatepass');
     Route::get('/adminpass/{id}', [UserController::class, 'adminpass'])->name('user.adminpass');
     Route::put('/adminUpdatePass/{id}', [UserController::class, 'adminUpdatePass'])->name('user.adminUpdatePass');
+});
 });

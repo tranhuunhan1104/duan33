@@ -55,10 +55,10 @@
                                             <a href="{{ route('group.edit', $group->id) }}"
                                                 class="btn btn-warning">Sửa</a>
                                             @endif
-                                                @if (Auth::user()->hasPermission('Group_forcedelete '))
+
                                                 <a data-href="{{ route('group.destroy', $group->id) }}"
                                                     id="{{ $group->id }}" class="btn btn-danger sm deleteIcon">Xóa</a>
-                                                @endif
+
                                         </form>
                                     </td>
                                 </tr>
