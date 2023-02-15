@@ -47,7 +47,7 @@
                                     <td>
 
                                         <button type="submit" class="btn btn-success"
-                                            onclick="return confirm('Chuyên vào thùng rác')">Xóa</button>
+                                            onclick="return confirm('Bạn có muốn chuyển danh mục này vào thùng rác không!!')">Xóa</button>
 
                                         <a href="{{ route('category_edit', [$team->id]) }}" class="btn btn-primary">Sửa</a>
                                     </td>
