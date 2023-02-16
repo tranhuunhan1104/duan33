@@ -17,12 +17,9 @@ class CategoryController extends Controller
     public function index()
     {
         $this->authorize('viewAny', Category::class);
-        $categories = Category::paginate(3);
+        $categories = Category::paginate(5);
         $param = [
-            'categories' => $categories,
-
-
-
+            'categories' => $categories
         ];
         return view('category.index', $param);
     }

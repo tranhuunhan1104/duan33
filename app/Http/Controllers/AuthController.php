@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AuthRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -16,7 +17,7 @@ class AuthController extends Controller
             return view('loginadmin.login');
         }
     }
-    public function postLogin(Request $request)
+    public function postLogin(AuthRequest $request)
     {
         $messages = [
             "email.exists" => "Email không đúng",
