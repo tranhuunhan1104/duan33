@@ -14,7 +14,7 @@ class OrderController extends Controller
     public function index()
     {
         $this->authorize('viewAny', Order::class);
-        $items=Order::get();
+        $items=Order::orderBy('id','DESC')->get();
         return view('order.index',compact('items'));
     }
     public function detail($id)

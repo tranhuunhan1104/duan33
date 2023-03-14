@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class ShopController extends Controller
 {
@@ -21,15 +22,25 @@ class ShopController extends Controller
      */
     public function checklogin(Request $request)
     {
-        // dd(123);
-        $arr = [
-            'email' => $request->email,
-            'password' => $request->password
-        ];
-        if (Auth::guard('customers')->attempt($arr)) {
+        $validated = $request->validate(
+            [
+                'email' => 'required',
+                'password' => 'required',
+                'email' => 'exists:customers',
+                // 'password' => 'exists:customers',
+            ],
+            [
+                'email.required' => 'Không được để trống !',
+                'password.required' => 'Không được để trống !',
+                'email.exists' => 'Email bạn nhập không tồn tại !',
+                // 'password.exists' => 'Email bạn nhập không tồn tại !',
+
+            ]
+        );
+        if (Auth::guard('customers')->attempt($validated)) {
             return redirect()->route('shop.index');
         } else {
-            return redirect()->route('login.index');
+            return redirect()->back();
         }
     }
     public function register()
@@ -206,11 +217,8 @@ class ShopController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
-
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
-
         return redirect()->route('shop.index');
     }
 
@@ -237,8 +245,6 @@ class ShopController extends Controller
             $data->address = $request->address;
             $data->email = $request->email;
             $data->phone = $request->phone;
-            $data->address = $request->address;
-
             if (isset($request->note)) {
                 $data->note = $request->note;
             }
@@ -248,6 +254,7 @@ class ShopController extends Controller
             $order->customer_id = Auth::guard('customers')->user()->id;
             $order->date_at = date('Y-m-d H:i:s');
             $order->total = $request->totalAll;
+
             $order->save();
         }
         $count_product = count($request->product_id);
@@ -275,15 +282,8 @@ class ShopController extends Controller
             $email->to($request->email, $request->name);
         });
 
-        // dd($request);
-        // alert()->success('Thêm Đơn Đặt: '.$request->name,'Thành Công');
+
         return redirect()->route('shop.index')->with($notification);;
-        // }
-        // } catch (\Exception $e) {
-        //     // dd($request);
-        //     Log::error($e->getMessage());
-        //     // toast('Đặt hàng thấy bại!', 'error', 'top-right');
-        //     return redirect()->route('shop.index');
-        // }
+
     }
 }

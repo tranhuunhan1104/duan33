@@ -27,7 +27,6 @@ class UserSeeder extends Seeder
         $item->gender ='Nam';
         $item->birthday ='2004/01/01';
         $item->group_id ='1';
-        // $item->image ='thang.ipg';
         $item->save();
     }
 }

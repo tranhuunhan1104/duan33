@@ -10,7 +10,6 @@
         </div>
         <div class="col-lg-6 text-center text-lg-right">
             <div class="d-inline-flex align-items-center">
-
                 <div class="flex-col hide-for-medium flex-right">
                             <ul class="header-nav header-nav-main nav nav-right  nav-uppercase">
                                     <div class="header-button">

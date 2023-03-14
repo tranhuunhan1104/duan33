@@ -24,24 +24,23 @@
                             </div>
                         </div>
                         <div class="col-4">
-                            <button type="submit" class="btn btn-warning">Tìm kiếm</button>
+                            <button type="submit" class="btn btn">Tìm kiếm</button>
                         </div>
                     </div>
                 </form>
 
 
                 @if (Auth::user()->hasPermission('Product_create'))
-                    <a class="btn btn-warning" href="{{ route('product.create') }}">Thêm</a>
+                    <a class="btn btn-success" href="{{ route('product.create') }}">Thêm</a>
                 @endif
 
                 <div class="table-responsive pt-3">
-                    <table class="table table-info" border="1">
+                    <table class="table table" border="1">
                         <thead>
                             <tr>
                                 <td scope="col">#</td>
                                 <td scope="col">Tên sản phẩm</td>
                                 <td scope="col">Giá (vnd)</td>
-                                <td scope="col">Mô tả</td>
                                 <td scope="col">Số lượng</td>
                                 <td scope="col">Ảnh</td>
                                 <td scope="col">Trạng thái</td>
@@ -56,11 +55,12 @@
                                     <th scope="row">{{ $key + 1 }}</th>
                                     <td>{{ $team->name }}</td>
                                     <td>{{ number_format($team->price) }}</td>
-                                    <td>{{ $team->description }}</td>
                                     <td>{{ $team->quantity }}</td>
                                     <td>
+                                        <a href="{{ route('products.show', $team->id) }}">
                                         <img style="width:200px ; height: 165px ; border-radius:0%"
                                             src="{{ asset('public/uploads/product/' . $team->image) }}" alt="">
+                                        </a>
                                     </td>
                                     <td>{{ $team->status }}</td>
                                     {{-- <td>{{$team->category_id }}</td> --}}
@@ -69,11 +69,11 @@
                                         <form action="{{ route('product.softdeletes', $team->id) }}" method="post">
                                             @method('PUT')
                                             @csrf
+                                            <a href="{{ route('product.edit', [$team->id]) }}" class="btn btn-primary">Sửa</a>
                                             <button
-                                                onclick="return confirm('Bạn có muốn chuyển danh mục này vào thùng rác không ?');"
-                                                class="btn btn-success">Xóa</button>
+                                            onclick="return confirm('Bạn có muốn chuyển danh mục này vào thùng rác không ?');"
+                                            class="btn btn-warning">Xóa</button>
                                         </form>
-                                        <a href="{{ route('product.edit', [$team->id]) }}" class="btn btn-primary">Sửa</a>
                                     </td>
                                     </form>
                                 </tr>

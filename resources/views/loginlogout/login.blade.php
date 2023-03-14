@@ -178,10 +178,16 @@ section .noi-dung .form .icon-dang-nhap li{
                 <div class="input-form">
                     <span>Email</span>
                     <input type="text" name="email">
+                    @if ($errors->any())
+                    <p style="color:red">{{ $errors->first('email') }}</p>
+                @endif
                 </div>
                 <div class="input-form">
                     <span>Password</span>
                     <input type="password" name="password">
+                    @if ($errors->any())
+                    <p style="color:red">{{ $errors->first('password') }}</p>
+                @endif
                 </div>
                 <div class="nho-dang-nhap">
                     <label><input type="checkbox" name=""> Nhớ Đăng Nhập</label>

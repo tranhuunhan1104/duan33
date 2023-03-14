@@ -71,7 +71,6 @@
                 <div class="border-bottom pb-2">
                     <div class="d-flex justify-content-between mb-3">
                         <h6>Tổng</h6>
-                        {{-- <h6>$ {{ $totalAll}}</h6> --}}
                         <h6>Vnd {{ number_format($totalAll) }}</h6>
                     </div>
                     <div class="d-flex justify-content-between">

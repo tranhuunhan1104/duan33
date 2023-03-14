@@ -106,8 +106,8 @@ button:hover {
       </label>
 
       <div class="clearfix">
-        <button type="submit" class="signupbtn">Sign Up</button>
+        <button type="submit" class="signupbtn">Đăng kí</button>
       </div>
     </div>
   </form>
-  <p class="mt-20">Bạn đã có tài khoản ?<a href=""> Login</a></p>
+  <p class="mt-20">Bạn đã có tài khoản ?<a href=""> Đăng nhập</a></p>

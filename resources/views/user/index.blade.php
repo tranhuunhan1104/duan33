@@ -58,7 +58,7 @@ border-radius:50%;
                                             @endif
                                             @if (Auth::user()->hasPermission('User_forceDelete'))
                                             <a data-href="{{ route('user.destroy', $user->id) }}"
-                                                id="{{ $user->id }}" class="btn btn-info deleteIcon">Xóa</i></a>
+                                                id="{{ $user->id }}" class="btn btn-danger deleteIcon">Xóa</i></a>
                                             @endif
                                         </td>
                                     </tr>

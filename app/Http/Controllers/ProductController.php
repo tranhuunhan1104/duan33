@@ -16,7 +16,7 @@ class ProductController extends Controller
     public function index()
     {
         $this->authorize('viewAny', Product::class);
-        $products = Product::with('category')->paginate(3);
+        $products = Product::orderBy('id','DESC')->with('category')->paginate(3);
         return view('product.index', compact(['products']));
     }
 
@@ -87,10 +87,11 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $this->authorize('view', Product::class);
+        $categories = Category::get();
         $productshow = Product::findOrFail($id);
         $param = [
             'productshow' => $productshow,
+            'categories' => $categories,
         ];
 
         // $productshow-> show();

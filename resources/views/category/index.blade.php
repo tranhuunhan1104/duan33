@@ -27,7 +27,8 @@
                 <a class="btn btn-warning" href="{{ route('category.create') }}">Thêm</a>
             @endif
             <div class="table-responsive pt-3">
-                <table class="table table-info">
+                <table class="table table
+                ">
                     <thead>
                         <tr>
                             <th> #</th>

@@ -54,6 +54,7 @@ Route::prefix('/')->middleware(['auth', 'preventBackHistory'])->group(function (
     Route::get('/product-create', [ProductController::class, 'create'])->name('product.create');
     Route::post('/product-store', [ProductController::class, 'store'])->name('product.store');
     Route::put('/product/{id}', [ProductController::class, 'update'])->name('product.update');
+    Route::get('/product-show/{id}', [ProductController::class, 'show'])->name('products.show');
     Route::get('/product/trash', [ProductController::class, 'trash'])->name('product.trash');
     Route::put('product/softdeletes/{id}', [ProductController::class, 'softdeletes'])->name('product.softdeletes');
     Route::put('product/restoredelete/{id}', [ProductController::class, 'restoredelete'])->name('product.restoredelete');
@@ -67,22 +68,6 @@ Route::prefix('/')->middleware(['auth', 'preventBackHistory'])->group(function (
 
 
 
-    //shop
-
-    Route::prefix('shop')->group(function () {
-        Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
-        Route::get('/showProduct/{id}', [ShopController::class, 'show'])->name('shop.showProduct');
-        Route::get('/store/{id}', [ShopController::class, 'store'])->name('shop.store');
-        Route::get('/cart', [ShopController::class, 'Cart'])->name('cart.index');
-        Route::delete('/remove-from-cart/{id}', [ShopController::class, 'remove'])->name('remove.from.cart');
-        Route::get('/checkOuts', [ShopController::class, 'checkOuts'])->name('checkOuts');
-        Route::post('/login', [ShopController::class, 'checklogin'])->name('shop.checklogin');
-        Route::get('/register', [ShopController::class, 'register'])->name('shop.register');
-        Route::get('/login-index', [ShopController::class, 'indexlogin'])->name('login.index');
-        Route::post('/checkregister', [ShopController::class, 'checkregister'])->name('shop.checkregister');
-        Route::post('/shoplogout', [ShopController::class, 'logout'])->name('shoplogout');
-        Route::post('/order', [ShopController::class, 'order'])->name('order');
-    });
 
     Route::prefix('order')->group(function () {
         Route::get('/', [OrderController::class, 'index'])->name('order.index');
@@ -115,3 +100,20 @@ Route::prefix('/')->middleware(['auth', 'preventBackHistory'])->group(function (
         Route::put('/adminUpdatePass/{id}', [UserController::class, 'adminUpdatePass'])->name('user.adminUpdatePass');
     });
 });
+
+    //shop
+
+    Route::prefix('shop')->group(function () {
+        Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
+        Route::get('/showProduct/{id}', [ShopController::class, 'show'])->name('shop.showProduct');
+        Route::get('/store/{id}', [ShopController::class, 'store'])->name('shop.store');
+        Route::get('/cart', [ShopController::class, 'Cart'])->name('cart.index');
+        Route::delete('/remove-from-cart/{id}', [ShopController::class, 'remove'])->name('remove.from.cart');
+        Route::get('/checkOuts', [ShopController::class, 'checkOuts'])->name('checkOuts');
+        Route::post('/login', [ShopController::class, 'checklogin'])->name('shop.checklogin');
+        Route::get('/register', [ShopController::class, 'register'])->name('shop.register');
+        Route::get('/login-index', [ShopController::class, 'indexlogin'])->name('login.index');
+        Route::post('/checkregister', [ShopController::class, 'checkregister'])->name('shop.checkregister');
+        Route::post('/shoplogout', [ShopController::class, 'logout'])->name('shoplogout');
+        Route::post('/order', [ShopController::class, 'order'])->name('order');
+    });

@@ -17,7 +17,7 @@ class CategoryController extends Controller
     public function index()
     {
         $this->authorize('viewAny', Category::class);
-        $categories = Category::paginate(5);
+        $categories = Category::orderBy('id','DESC')->paginate(5);
         $param = [
             'categories' => $categories
         ];

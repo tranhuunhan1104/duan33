@@ -19,10 +19,6 @@ class DatabaseSeeder extends Seeder
         $this->importRoles();
         $this->importRole();
         $this->importGroupRole();
-
-
-
-
         $this->call(UserSeeder::class);
     }
     public function importRoles()
